@@ -41,7 +41,7 @@ linux/flutter/ephemeral/
 macos/Flutter/ephemeral/
 
 # =========================
-# PYTHON (if used in tooling)
+# PYTHON / FASTAPI
 # =========================
 __pycache__/
 *.py[cod]
@@ -49,21 +49,24 @@ __pycache__/
 *.pyd
 *.egg-info/
 venv/
-.env
+.venv/
+dist/
+*.egg
 
 # =========================
-# FASTAPI / BACKEND ENV (if used)
+# ENVIRONMENT & SECRETS
 # =========================
+.env
 .env.local
 .env.production
+.env.development
 
-# =========================
-# FIREBASE / BACKEND CONFIG
-# =========================
+# Firebase / Google credentials — NEVER commit these
 google-services.json
 GoogleService-Info.plist
 credentials.json
 secrets.json
+service-account*.json
 
 # =========================
 # IDE / EDITORS
@@ -71,17 +74,21 @@ secrets.json
 .vscode/
 .idea/
 *.iml
+*.swp
+*.swo
 
 # =========================
 # OS FILES
 # =========================
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # =========================
 # LOGS
 # =========================
 *.log
+logs/
 
 # =========================
 # TEMP / CACHE
@@ -90,4 +97,11 @@ tmp/
 temp/
 *.tmp
 coverage/
-dist/
+.coverage
+htmlcov/
+
+# =========================
+# HIVE LOCAL DATA (dev)
+# =========================
+*.hive
+*.lock
