@@ -58,9 +58,7 @@ async def chat(
     if not request.message.strip():
         raise HTTPException(status_code=400, detail="Message cannot be empty.")
 
-    prompt_parts = []
-    prompt_parts.append(f"System: {SYSTEM_PROMPT}")
-    prompt_parts.append(f"Language: Respond in {request.language}.")
+    prompt_parts = [f"Language: Respond in {request.language}."]
     prompt_parts.append("\n--- Conversation History ---")
 
     if request.history:
@@ -79,11 +77,11 @@ async def chat(
     full_prompt = "\n".join(prompt_parts)
 
     try:
-        model = genai.GenerativeModel("gemini-1.5-flash")
-        gemini_result = model.generate_content(
-            full_prompt,
-            system_instruction=SYSTEM_PROMPT
+        model = genai.GenerativeModel(
+            model_name="gemini-1.5-flash",
+            system_instruction=SYSTEM_PROMPT,
         )
+        gemini_result = model.generate_content(full_prompt)
         reply_text = gemini_result.text.strip() if gemini_result.text else "I'm sorry, I couldn't process that."
 
         # `response` is the only field name the client should ever see for the
