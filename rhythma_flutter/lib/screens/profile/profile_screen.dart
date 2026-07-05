@@ -201,7 +201,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                         _cycleLength = cycleVal!;
                       });
                       
-                      await LocalStorageService.saveProfile({
+                      await LocalStorageService.mergeProfile({
                         'name': name,
                         'age': ageVal!,
                         'cycle_length': cycleVal!,
