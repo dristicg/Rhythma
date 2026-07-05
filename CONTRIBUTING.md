@@ -9,14 +9,15 @@ Please read this guide before opening an issue or pull request.
 ## Table of Contents
 
 - [Project Setup](#project-setup)
+- [Feature Areas Open for Contribution](#feature-areas-open-for-contribution)
 - [Branch Naming](#branch-naming)
 - [Issue Workflow](#issue-workflow)
 - [Issue Assignment Policy](#issue-assignment-policy)
 - [Issue Labels](#issue-labels)
 - [Coding Style](#coding-style)
-  - [General](#general)
-  - [Flutter](#flutter)
-  - [Backend](#backend)
+  * [General](#general)
+  * [Flutter](#flutter)
+  * [Backend](#backend)
 - [Commit Message Format](#commit-message-format)
 - [Code Quality Requirements](#code-quality-requirements)
 - [How to Test](#how-to-test)
@@ -25,7 +26,7 @@ Please read this guide before opening an issue or pull request.
 - [Maximum Recommended PR Size](#maximum-recommended-pr-size)
 - [Required Screenshots/Videos for UI PRs](#required-screenshotsvideos-for-ui-prs)
 - [Required API Documentation for Backend PRs](#required-api-documentation-for-backend-prs)
-- [Security Guidelines.](#security-guidelines).
+- [Security Guidelines](#security-guidelines)
 - [Documentation Guidelines](#documentation-guidelines)
 - [Review Expectations](#review-expectations)
 - [Code of Conduct](#code-of-conduct)
@@ -34,14 +35,14 @@ Please read this guide before opening an issue or pull request.
 
 ## Project Setup
 
-```bash
+```
 git clone https://github.com/<your-fork>/Rhythma.git
 cd Rhythma
 ```
 
 **Flutter app:**
 
-```bash
+```
 cd rhythma_flutter
 flutter create .        # regenerates android/ and ios/, which are not committed
 flutter pub get
@@ -51,7 +52,7 @@ flutter run
 
 **Backend:**
 
-```bash
+```
 cd backend
 python -m venv venv && source venv/bin/activate
 pip install -r ../requirements.txt
@@ -59,7 +60,21 @@ cp .env.example .env    # JWT_SECRET and Firebase credentials are required
 uvicorn main:app --reload
 ```
 
-Full setup details, environment variables, and Firebase configuration live in the [README](README.md#installation) — Not duplicating that here; keeping this file focused on the *contribution process*.
+Full setup details, environment variables, and Firebase configuration live in the [README](https://github.com/ishita2740/Rhythma/blob/main/README.md#installation) — not duplicating that here; keeping this file focused on the *contribution process*.
+
+---
+
+## Feature Areas Open for Contribution
+
+The [README's Project Status](https://github.com/ishita2740/Rhythma/blob/main/README.md#project-status) table is the source of truth for what's implemented, in progress, or planned. A few areas are called out here because they're currently **clean-slate** — no code, UI, or content exists yet — and are good candidates for a contributor who wants to own something end-to-end rather than patch an existing flow.
+
+**Before starting on any of these, open an issue first** (see [Issue Workflow](#issue-workflow)). Each one needs a scoping discussion, since the "right" first version is genuinely open, not just an implementation detail.
+
+- **First Period Guidance** — a dedicated onboarding and education flow for first-time users aged 12–17, with simpler language, a different tone, and content distinct from the general cycle-tracking experience. Open questions before code gets written: how do we determine a user is in this age group, how much of the existing navigation should this flow reuse vs. replace, and where does the educational content itself come from (needs review, ideally from someone with relevant health-education background).
+- **Ayurvedic Correlation Layer** — educational content connecting lifestyle and cycle patterns to traditional Ayurvedic wellness concepts, surfaced contextually alongside cycle/insight data. This is content-heavy work as much as code: sourcing accurate, non-prescriptive material is the harder half of this feature, and it needs to stay clearly educational rather than reading as medical advice (see [Disclaimer](https://github.com/ishita2740/Rhythma/blob/main/README.md#disclaimer)).
+- **WhatsApp Bot Integration** — a Gemini-powered WhatsApp assistant (via Twilio/Meta Cloud API) for cycle tracking and health Q&A without an app install. This one has a real dependency: it should build on the existing `backend/api/assistant.py` endpoint, which currently exists but isn't called by the Flutter app yet. If you're interested in this, it's worth first checking in on the plan to consolidate the two AI-assistant paths (client-direct vs. backend-proxied — see the README's [Features In Progress](https://github.com/ishita2740/Rhythma/blob/main/README.md#features-in-progress)), since building on the wrong one means redoing the work later.
+
+If you have an idea that isn't listed in the README's Future Features section at all, that's fine too — open an issue describing it and we can discuss whether and how it fits before any code is written.
 
 ---
 
@@ -68,7 +83,7 @@ Full setup details, environment variables, and Firebase configuration live in th
 Branch off `main` using one of these prefixes:
 
 | Prefix | Use for |
-|---|---|
+| --- | --- |
 | `feature/` | New functionality (`feature/cycle-log-persistence`) |
 | `fix/` | Bug fixes (`fix/sms-rate-limit-reset`) |
 | `docs/` | Documentation-only changes (`docs/firebase-setup`) |
@@ -83,7 +98,7 @@ Use lowercase, hyphen-separated, descriptive names — not issue numbers alone (
 ## Issue Workflow
 
 1. **Search first.** Check open and closed issues to avoid duplicates.
-2. **Open an issue before starting non-trivial work.** Small typo fixes or one-line bug fixes can skip straight to a PR; anything that touches app behavior, data models, or more than a couple of files should have an issue first so the approach can be discussed.
+2. **Open an issue before starting non-trivial work.** Small typo fixes or one-line bug fixes can skip straight to a PR; anything that touches app behavior, data models, or more than a couple of files should have an issue first so the approach can be discussed. This applies especially to the clean-slate areas in [Feature Areas Open for Contribution](#feature-areas-open-for-contribution).
 3. **Discuss the approach before implementing large features.**
 4. **Wait for a maintainer acknowledgment** on larger issues before submitting a large PR against them — this avoids wasted effort if the direction needs to change.
 
@@ -101,15 +116,16 @@ Use lowercase, hyphen-separated, descriptive names — not issue numbers alone (
 
 ## Issue Labels
 
-| Label	| Purpose |
-|---|---|
+| Label | Purpose |
+| --- | --- |
 | good first issue | Beginner-friendly tasks |
-| enhancement	| New features or improvements |
-| bug	| Defects or unexpected behavior |
-| documentation	| Documentation-only work |
-| good frontend	| Flutter/UI contributions |
-| good backend	| Backend/API contributions |
-| maintenance	| Refactoring, cleanup, tooling |
+| enhancement | New features or improvements |
+| bug | Defects or unexpected behavior |
+| documentation | Documentation-only work |
+| good frontend | Flutter/UI contributions |
+| good backend | Backend/API contributions |
+| content | Health/educational content work (e.g. First Period Guidance, Ayurvedic layer) |
+| maintenance | Refactoring, cleanup, tooling |
 
 ---
 
@@ -182,7 +198,7 @@ Keep the summary line under ~72 characters, written in the imperative mood ("add
 
 **Flutter:**
 
-```bash
+```
 cd rhythma_flutter
 flutter analyze
 dart format --output=none --set-exit-if-changed .
@@ -191,7 +207,7 @@ flutter test
 
 **Backend:**
 
-```bash
+```
 cd backend
 pytest -v
 ```
@@ -259,6 +275,7 @@ Any PR that adds or changes a backend endpoint must include, in the PR descripti
 ---
 
 ## Security Guidelines
+
 Security is a priority.
 
 Please:
@@ -271,20 +288,19 @@ Please:
 
 ---
 
-
 ## Documentation Guidelines
 
-- If your change alters **user-facing behavior**, update the relevant section of the [README](README.md) in the same PR — particularly the [Project Status](README.md#project-status) table, since it's the single source of truth for what's implemented vs. in progress. A PR that makes a feature work end-to-end but leaves it listed as "❌ Missing" in the README will be asked to update that table before merge.
+- If your change alters **user-facing behavior**, update the relevant section of the [README](https://github.com/ishita2740/Rhythma/blob/main/README.md) in the same PR — particularly the [Project Status](https://github.com/ishita2740/Rhythma/blob/main/README.md#project-status) table, since it's the single source of truth for what's implemented vs. in progress. A PR that makes a feature work end-to-end but leaves it listed as "❌ Not implemented" in the README will be asked to update that table before merge.
 - If your change alters the **system design** (new data flow, new dependency between the Flutter app and backend, new external service), update `docs/architecture.md` accordingly.
-- If you add a **new environment variable**, update the corresponding `.env.example` file (`backend/.env.example` or `rhythma_flutter/env.example`) and the README's [Environment Variables](README.md#environment-variables) table.
+- If you add a **new environment variable**, update the corresponding `.env.example` file (`backend/.env.example` or `rhythma_flutter/env.example`) and the README's [Environment Variables](https://github.com/ishita2740/Rhythma/blob/main/README.md#environment-variables) table.
 - If you add a **new user-facing string**, add it to `app_en.arb` at minimum; adding it to the other four locale files (`hi`, `mr`, `ta`, `te`) is strongly encouraged but won't block a PR if you leave a note asking for translation help.
-- Documentation should describe **what the code currently does**, not the eventual vision for it. When in doubt, describe the current behavior and put aspirational notes clearly under a "planned" or "future" heading.
+- Documentation should describe **what the code currently does**, not the eventual vision for it. When in doubt, describe the current behavior and put aspirational notes clearly under a "Future Features" or "planned" heading.
 
 ---
 
 ## Review Expectations
 
-- Reviewers will check for: correctness, Code quality, scope (see [Maximum Recommended PR Size](#maximum-recommended-pr-size)), consistency with existing conventions, test coverage, and documentation updates.
+- Reviewers will check for: correctness, code quality, scope (see [Maximum Recommended PR Size](#maximum-recommended-pr-size)), consistency with existing conventions, test coverage, and documentation updates.
 - You may be asked to split a large PR into smaller ones — this isn't a rejection of the work, just a request to make it reviewable.
 - Reviewers will point out places where a change silently reintroduces a gap this project is trying to close (e.g., adding a new hardcoded UI value instead of wiring it to real data, or adding a new dependency that isn't actually used yet, mirroring several unused dependencies already in the codebase). Please treat this feedback as part of the project's push toward accuracy between what's declared and what's implemented, not personal criticism.
 - Maintainers reserve the right to close stale PRs (no activity for 7+ days after review feedback) — feel free to reopen or resubmit when you're able to continue.
