@@ -79,6 +79,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/avatars/
     - .env
 
   # Fonts loaded via google_fonts package — no local font files needed

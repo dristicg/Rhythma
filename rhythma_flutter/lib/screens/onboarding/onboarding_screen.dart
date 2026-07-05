@@ -1,10 +1,11 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../../l10n/app_localizations.dart';
 import '../../config/theme.dart';
 import '../../providers/locale_provider.dart';
 import '../../services/local_storage_service.dart';
+import '../../providers/profile_provider.dart';
 
 /// The 5-step offline-first onboarding flow.
 /// On completion, writes all collected data to LocalStorageService and
@@ -12,6 +13,13 @@ import '../../services/local_storage_service.dart';
 class OnboardingScreen extends StatefulWidget {
   /// Called when the user taps "Get Started" on the final step.
   final VoidCallback onComplete;
+
+  static const List<String> avatars = [
+    'assets/avatars/avatar_1.png',
+    'assets/avatars/avatar_2.png',
+    'assets/avatars/avatar_3.png',
+    'assets/avatars/avatar_4.png',
+  ];
 
   const OnboardingScreen({Key? key, required this.onComplete}) : super(key: key);
 
@@ -25,10 +33,10 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   int _currentPage = 0;
   static const int _totalPages = 5;
 
-  // Step 1 â€“ Language
+  // Step 1 – Language
   String _selectedLanguage = 'en';
 
-  // Step 2 â€“ Basic Profile
+  // Step 2 – Basic Profile
   final _nameController = TextEditingController();
   final _ageController = TextEditingController();
   final _heightController = TextEditingController();
@@ -39,18 +47,18 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   String? _heightError;
   String? _weightError;
 
-  // Step 3 â€“ Menstrual Profile
+  // Step 3 – Menstrual Profile
   DateTime? _lastPeriodDate;
   int _cycleLength = 28;
   int _periodDuration = 5;
   bool _isRegular = true;
 
-  // Step 4 â€“ Optional Info
+  // Step 4 – Optional Info
   final _phoneController = TextEditingController();
   final _cityController = TextEditingController();
   final _stateController = TextEditingController();
 
-  // Step 5 â€“ Permissions
+  // Step 5 – Permissions
   bool _notificationsEnabled = false;
   bool _dataConsent = false;
   String? _consentError;
@@ -62,7 +70,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   void initState() {
     super.initState();
     _selectedLanguage = LocalStorageService.preferredLanguage;
-    _selectedAvatar = _avatarEmojis.first;
+    _selectedAvatar = OnboardingScreen.avatars.first;
 
     _pageAnimController = AnimationController(
       vsync: this,
@@ -88,23 +96,19 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     super.dispose();
   }
 
-  // â”€â”€ Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Data ──────────────────────────────────────────────────────────────────
 
   static const List<Map<String, String>> _languages = [
     {'code': 'en', 'label': 'English'},
-    {'code': 'hi', 'label': 'à¤¹à¤¿à¤¨à¥à¤¦à¥€'},
-    {'code': 'ta', 'label': 'à®¤à®®à®¿à®´à¯'},
-    {'code': 'te', 'label': 'à°¤à±†à°²à±à°—à±'},
-    {'code': 'mr', 'label': 'à¤®à¤°à¤¾à¤ à¥€'},
+    {'code': 'hi', 'label': 'हिन्दी'},
+    {'code': 'ta', 'label': 'தமிழ்'},
+    {'code': 'te', 'label': 'తెలుగు'},
+    {'code': 'mr', 'label': 'मराठी'},
   ];
 
-  static const List<String> _avatarEmojis = [
-    'ðŸŒ¸', 'ðŸŒº', 'ðŸŒ»', 'ðŸŒ·', 'ðŸŒ¹',
-    'ðŸ¦‹', 'ðŸŒ™', 'â­', 'ðŸ’«', 'ðŸŒˆ',
-    'ðŸ€', 'ðŸŒ¿', 'ðŸ¦„', 'ðŸ', 'ðŸŒŠ',
-  ];
+  // avatars list moved to public OnboardingScreen class
 
-  // â”€â”€ Navigation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Navigation ────────────────────────────────────────────────────────────
 
   bool _validateCurrentPage() {
     final l = AppLocalizations.of(context)!;
@@ -191,7 +195,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   Future<void> _saveAndComplete() async {
     final profile = <String, dynamic>{
       'name': _nameController.text.trim().isEmpty ? 'User' : _nameController.text.trim(),
-      'avatar': _selectedAvatar ?? 'ðŸŒ¸',
+      'avatar': _selectedAvatar ?? 'assets/avatars/avatar_1.png',
       'language': _selectedLanguage,
     };
     final age = int.tryParse(_ageController.text);
@@ -214,13 +218,13 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     if (state.isNotEmpty) profile['state'] = state;
     profile['notifications_enabled'] = _notificationsEnabled;
 
-    await LocalStorageService.saveProfile(profile);
+    await context.read<ProfileProvider>().saveProfile(profile);
     await LocalStorageService.setOnboardingCompleted(true);
 
     widget.onComplete();
   }
 
-  // â”€â”€ UI â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── UI ────────────────────────────────────────────────────────────────────
 
   @override
   Widget build(BuildContext context) {
@@ -326,7 +330,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     );
   }
 
-  // â”€â”€ Step 1: Language & Trust â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Step 1: Language & Trust ──────────────────────────────────────────────
 
   Widget _buildStep1(AppLocalizations l) {
     return SingleChildScrollView(
@@ -334,13 +338,16 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildStepHeader('ðŸŒ', l.onboardingStep1Title, l.onboardingStep1Subtitle),
+          _buildStepHeader(l.onboardingStep1Title, l.onboardingStep1Subtitle),
           const SizedBox(height: 32),
           ...List.generate(_languages.length, (i) {
             final lang = _languages[i];
             final selected = lang['code'] == _selectedLanguage;
             return GestureDetector(
-              onTap: () => setState(() => _selectedLanguage = lang['code']!),
+              onTap: () {
+                setState(() => _selectedLanguage = lang['code']!);
+                context.read<LocaleProvider>().setLocale(Locale(lang['code']!));
+              },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 220),
                 margin: const EdgeInsets.only(bottom: 12),
@@ -385,7 +392,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('ðŸ”’', style: TextStyle(fontSize: 20)),
+                const Text('🔒', style: TextStyle(fontSize: 20)),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
@@ -405,7 +412,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     );
   }
 
-  // â”€â”€ Step 2: Basic Profile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Step 2: Basic Profile ──────────────────────────────────────────────────
 
   Widget _buildStep2(AppLocalizations l) {
     return SingleChildScrollView(
@@ -413,7 +420,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildStepHeader('ðŸ‘¤', l.onboardingStep2Title, l.onboardingStep2Subtitle),
+          _buildStepHeader(l.onboardingStep2Title, l.onboardingStep2Subtitle),
           const SizedBox(height: 28),
           // Avatar picker
           Text(
@@ -422,20 +429,20 @@ class _OnboardingScreenState extends State<OnboardingScreen>
           ),
           const SizedBox(height: 12),
           SizedBox(
-            height: 60,
+            height: 70,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: _avatarEmojis.length,
+              itemCount: OnboardingScreen.avatars.length,
               itemBuilder: (_, i) {
-                final emoji = _avatarEmojis[i];
-                final selected = _selectedAvatar == emoji;
+                final avatarPath = OnboardingScreen.avatars[i];
+                final selected = _selectedAvatar == avatarPath;
                 return GestureDetector(
-                  onTap: () => setState(() => _selectedAvatar = emoji),
+                  onTap: () => setState(() => _selectedAvatar = avatarPath),
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
-                    margin: const EdgeInsets.only(right: 10),
-                    width: 54,
-                    height: 54,
+                    margin: const EdgeInsets.only(right: 12),
+                    width: 60,
+                    height: 60,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: selected
@@ -446,8 +453,12 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         width: 2.5,
                       ),
                     ),
-                    child: Center(
-                      child: Text(emoji, style: const TextStyle(fontSize: 26)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage(avatarPath),
+                        backgroundColor: Colors.transparent,
+                      ),
                     ),
                   ),
                 );
@@ -499,7 +510,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     );
   }
 
-  // â”€â”€ Step 3: Menstrual Profile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Step 3: Menstrual Profile ─────────────────────────────────────────────
 
   Widget _buildStep3(AppLocalizations l) {
     return SingleChildScrollView(
@@ -507,7 +518,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildStepHeader('ðŸŒ™', l.onboardingStep3Title, l.onboardingStep3Subtitle),
+          _buildStepHeader(l.onboardingStep3Title, l.onboardingStep3Subtitle),
           const SizedBox(height: 28),
           // Last period date picker
           Text(l.onboardingLastPeriodLabel,
@@ -520,15 +531,27 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                 initialDate: _lastPeriodDate ?? DateTime.now().subtract(const Duration(days: 14)),
                 firstDate: DateTime.now().subtract(const Duration(days: 365)),
                 lastDate: DateTime.now(),
-                builder: (_, child) => Theme(
-                  data: Theme.of(context).copyWith(
-                    colorScheme: ColorScheme.dark(
-                      primary: RhythmaColors.primary,
-                      surface: RhythmaColors.surface,
+                builder: (context, child) {
+                  final isDark = Theme.of(context).brightness == Brightness.dark;
+                  return Theme(
+                    data: Theme.of(context).copyWith(
+                      colorScheme: isDark
+                          ? ColorScheme.dark(
+                              primary: RhythmaColors.primary,
+                              onPrimary: RhythmaColors.primaryFg,
+                              surface: RhythmaColors.surface,
+                              onSurface: RhythmaColors.foreground,
+                            )
+                          : ColorScheme.light(
+                              primary: RhythmaColors.primary,
+                              onPrimary: RhythmaColors.primaryFg,
+                              surface: RhythmaColors.surface,
+                              onSurface: RhythmaColors.foreground,
+                            ),
                     ),
-                  ),
-                  child: child!,
-                ),
+                    child: child!,
+                  );
+                },
               );
               if (picked != null) setState(() => _lastPeriodDate = picked);
             },
@@ -599,7 +622,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     );
   }
 
-  // â”€â”€ Step 4: Optional Info â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Step 4: Optional Info ──────────────────────────────────────────────────
 
   Widget _buildStep4(AppLocalizations l) {
     return SingleChildScrollView(
@@ -607,7 +630,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildStepHeader('ðŸ“', l.onboardingStep4Title, l.onboardingStep4Subtitle),
+          _buildStepHeader(l.onboardingStep4Title, l.onboardingStep4Subtitle),
           const SizedBox(height: 28),
           _buildTextField(
             controller: _phoneController,
@@ -632,7 +655,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     );
   }
 
-  // â”€â”€ Step 5: Permissions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Step 5: Permissions ────────────────────────────────────────────────────
 
   Widget _buildStep5(AppLocalizations l) {
     return SingleChildScrollView(
@@ -640,11 +663,11 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildStepHeader('ðŸ””', l.onboardingStep5Title, l.onboardingStep5Subtitle),
+          _buildStepHeader(l.onboardingStep5Title, l.onboardingStep5Subtitle),
           const SizedBox(height: 36),
           // Notification toggle
           _buildSwitchTile(
-            icon: 'ðŸ“…',
+            icon: '📅',
             title: l.onboardingEnableNotifications,
             subtitle: l.onboardingNotificationsDesc,
             value: _notificationsEnabled,
@@ -711,13 +734,17 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     );
   }
 
-  // â”€â”€ Shared helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Shared helpers ────────────────────────────────────────────────────────
 
-  Widget _buildStepHeader(String emoji, String title, String subtitle) {
+  Widget _buildStepHeader(String title, String subtitle) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(emoji, style: const TextStyle(fontSize: 40)),
+        Image.asset(
+          'assets/images/logo.png',
+          height: 48,
+          fit: BoxFit.contain,
+        ),
         const SizedBox(height: 12),
         Text(
           title,

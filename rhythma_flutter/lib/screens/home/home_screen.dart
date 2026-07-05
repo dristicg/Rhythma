@@ -5,6 +5,7 @@ import '../../config/theme.dart';
 import '../../components/shared.dart';
 import '../../components/charts.dart';
 import '../../providers/theme_provider.dart';
+import '../../providers/profile_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,6 +14,13 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.watch<ThemeProvider>();
     final l10n = AppLocalizations.of(context)!;
+    final profile = context.watch<ProfileProvider>().profile;
+    final name = profile['name'] as String?;
+    final greetingPrefix = l10n.homeGreeting.split(',').first.trim();
+    final greeting = name != null && name.trim().isNotEmpty
+        ? '$greetingPrefix, ${name.trim().split(' ').first}'
+        : greetingPrefix;
+
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 100),
       child: Column(
@@ -28,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        l10n.homeGreeting,
+                        greeting,
                         style: TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.w700,

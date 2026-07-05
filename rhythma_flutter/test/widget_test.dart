@@ -8,6 +8,7 @@ import 'package:rhythma/screens/settings/settings_screen.dart';
 import 'package:rhythma/services/local_storage_service.dart';
 import 'package:rhythma/providers/locale_provider.dart';
 import 'package:rhythma/providers/theme_provider.dart';
+import 'package:rhythma/providers/profile_provider.dart';
 
 void main() {
   setUp(() {
@@ -35,6 +36,7 @@ void main() {
         providers: [
           ChangeNotifierProvider(create: (_) => LocaleProvider()),
           ChangeNotifierProvider(create: (_) => ThemeProvider()),
+          ChangeNotifierProvider(create: (_) => ProfileProvider()),
         ],
         child: const MaterialApp(
           localizationsDelegates: [

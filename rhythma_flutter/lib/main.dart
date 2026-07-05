@@ -16,6 +16,7 @@ import 'screens/onboarding/onboarding_screen.dart';
 import 'services/local_storage_service.dart';
 import 'providers/locale_provider.dart';
 import 'providers/theme_provider.dart';
+import 'providers/profile_provider.dart';
 import 'services/notification_service.dart';
 
 Future<void> main() async {
@@ -45,6 +46,7 @@ Future<void> main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => LocaleProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => ProfileProvider()),
       ],
       child: const RhythmaApp(),
     ),
