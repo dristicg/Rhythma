@@ -1,59 +1,51 @@
-name: Flutter CI
+name: Backend CI
 
 on:
   pull_request:
     branches: [main]
     paths:
-      - 'rhythma_flutter/**'
-      - '.github/workflows/flutter.yml'
+      - 'backend/**'
+      - 'requirements.txt'
+      - '.github/workflows/backend.yml'
   push:
     branches: [main]
     paths:
-      - 'rhythma_flutter/**'
-      - '.github/workflows/flutter.yml'
-
-defaults:
-  run:
-    working-directory: rhythma_flutter
+      - 'backend/**'
+      - 'requirements.txt'
+      - '.github/workflows/backend.yml'
 
 jobs:
-  flutter-checks:
-    name: Analyze, format, and test
+  backend-tests:
+    name: Run backend test suite
     runs-on: ubuntu-latest
+
+    # Dummy values only — never real secrets. backend/tests/test_auth.py
+    # mocks firebase_admin and google.generativeai entirely via sys.modules
+    # before importing the app, and sets its own JWT_SECRET/GEMINI_API_KEY
+    # inline, so nothing here is strictly required by the current test
+    # suite. Set anyway as a safety net for any future test added without
+    # its own inline mocking — the app should be able to *start* with
+    # these, even though no real external call is ever made.
+    env:
+      JWT_SECRET: ci-dummy-secret-not-for-production
+      GEMINI_API_KEY: ci-dummy-key
+      DATABASE_URL: 'sqlite:///:memory:'
+      TWILIO_ACCOUNT_SID: ci-dummy-sid
+      TWILIO_AUTH_TOKEN: ci-dummy-token
+      TWILIO_PHONE_NUMBER: '+10000000000'
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          channel: 'stable'
-          cache: true
-
-      - name: Cache pub dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.pub-cache
-          key: ${{ runner.os }}-pub-${{ hashFiles('rhythma_flutter/pubspec.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pub-
+          python-version: '3.11'
+          cache: 'pip'
 
       - name: Install dependencies
-        run: flutter pub get
-
-      - name: Analyze
-        run: flutter analyze
-
-      - name: Check formatting
-        # Scoped to lib/ and test/ only — not `.`. The repo's generated
-        # build/ directory (gitignored, never present on a fresh checkout
-        # anyway) previously caused `dart format .` to crash on a stale
-        # native build artifact locally; scoping avoids that whole class
-        # of problem regardless of environment, and there's no reason to
-        # ever let the formatter walk into android/, ios/, web/, or
-        # .dart_tool/ in the first place.
-        run: dart format --set-exit-if-changed lib test
+        run: pip install -r requirements.txt
 
       - name: Run tests
-        run: flutter test
+        run: pytest backend/tests/ -v
