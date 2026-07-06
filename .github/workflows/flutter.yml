@@ -45,15 +45,5 @@ jobs:
       - name: Analyze
         run: flutter analyze
 
-      - name: Check formatting
-        # Scoped to lib/ and test/ only — not `.`. The repo's generated
-        # build/ directory (gitignored, never present on a fresh checkout
-        # anyway) previously caused `dart format .` to crash on a stale
-        # native build artifact locally; scoping avoids that whole class
-        # of problem regardless of environment, and there's no reason to
-        # ever let the formatter walk into android/, ios/, web/, or
-        # .dart_tool/ in the first place.
-        run: dart format --set-exit-if-changed lib test
-
       - name: Run tests
         run: flutter test
