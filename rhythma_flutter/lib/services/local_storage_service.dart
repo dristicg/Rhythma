@@ -218,7 +218,7 @@ class LocalStorageService {
   /// Save (merge) a single field into today's — or a given date's — cycle log
   /// entry. Used by quick log actions (e.g. Home screen Flow/Mood/Sleep/Stress
   /// buttons) that log one value at a time rather than a full CycleLog form.
-  static Future<void> saveQuickLogField(DateTime date, String field, String value) async {
+  static Future<void> saveQuickLogField(DateTime date, String field, dynamic value) async {
     final key = _scoped(_dateKey(date));
     final existing = _cycleBox.get(key);
     final data = existing != null
@@ -226,6 +226,14 @@ class LocalStorageService {
         : <String, dynamic>{'start_date': _dateKey(date)};
     data[field] = value;
     await _cycleBox.put(key, data);
+  }
+
+  /// Returns the saved log for a single date (e.g. to prefill the Cycle
+  /// screen's log rows and Save button with whatever's already been logged
+  /// for the currently-selected day), or null if nothing's been logged yet.
+  static Map<String, dynamic>? getCycleLogForDate(DateTime date) {
+    final raw = _cycleBox.get(_scoped(_dateKey(date)));
+    return raw != null ? Map<String, dynamic>.from(raw) : null;
   }
 
   /// Merges [updates] into the existing profile instead of overwriting it.
