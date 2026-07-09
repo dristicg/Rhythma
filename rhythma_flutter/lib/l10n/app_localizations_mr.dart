@@ -136,6 +136,26 @@ class AppLocalizationsMr extends AppLocalizations {
   String get homeArticle => 'लेख';
 
   @override
+  String get homeFailedLoad => 'Failed to load dashboard';
+
+  @override
+  String get homeRetry => 'Retry';
+
+  @override
+  String get homeComingSoon => 'Coming Soon';
+
+  @override
+  String homeUnderDevelopment(String topic) {
+    return '$topic is currently under development.';
+  }
+
+  @override
+  String get homePrivacySecurity => 'Privacy & Security';
+
+  @override
+  String get homeOk => 'OK';
+
+  @override
   String get cycleTrackerTitle => 'चक्र ट्रॅकर';
 
   @override

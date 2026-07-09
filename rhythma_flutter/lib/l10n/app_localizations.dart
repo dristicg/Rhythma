@@ -350,6 +350,42 @@ abstract class AppLocalizations {
   /// **'ARTICLE'**
   String get homeArticle;
 
+  /// No description provided for @homeFailedLoad.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load dashboard'**
+  String get homeFailedLoad;
+
+  /// No description provided for @homeRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get homeRetry;
+
+  /// No description provided for @homeComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming Soon'**
+  String get homeComingSoon;
+
+  /// No description provided for @homeUnderDevelopment.
+  ///
+  /// In en, this message translates to:
+  /// **'{topic} is currently under development.'**
+  String homeUnderDevelopment(String topic);
+
+  /// No description provided for @homePrivacySecurity.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy & Security'**
+  String get homePrivacySecurity;
+
+  /// No description provided for @homeOk.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get homeOk;
+
   /// No description provided for @cycleTrackerTitle.
   ///
   /// In en, this message translates to:

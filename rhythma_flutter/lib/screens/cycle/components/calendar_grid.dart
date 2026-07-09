@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
 import 'package:rhythma/l10n/app_localizations.dart';
 import '../../../config/theme.dart';
 import '../../../providers/cycle_provider.dart';
@@ -12,10 +11,10 @@ class CalendarGrid extends StatefulWidget {
   final int initialPageOffset;
 
   const CalendarGrid({
-    Key? key,
+    super.key,
     required this.pageController,
     required this.initialPageOffset,
-  }) : super(key: key);
+  });
 
   @override
   State<CalendarGrid> createState() => _CalendarGridState();
