@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Icon(Icons.error_outline, size: 48, color: RhythmaColors.rose),
             const SizedBox(height: 16),
             Text(
-              'Failed to load dashboard',
+              l10n.homeFailedLoad,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 8),
@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _fetchDashboardData,
-              child: Text('Retry'),
+              child: Text(l10n.homeRetry),
             ),
           ],
         ),
@@ -140,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 _HeaderIcon(
                   icon: Icons.shield_outlined,
                   onTap: () =>
-                      _showComingSoonDialog(context, 'Privacy & Security'),
+                      _showComingSoonDialog(context, l10n.homePrivacySecurity),
                 ),
               ],
             ),
@@ -553,15 +553,16 @@ class _HomeScreenState extends State<HomeScreen> {
   // ─── Helpers ────────────────────────────────────────────────────────────
 
   void _showComingSoonDialog(BuildContext context, String topic) {
+    final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Text('Coming Soon',
+        title: Text(l10n.homeComingSoon,
             textAlign: TextAlign.center,
             style: TextStyle(color: RhythmaColors.primary)),
         content: Text(
-          '$topic is currently under development.',
+          l10n.homeUnderDevelopment(topic),
           textAlign: TextAlign.center,
         ),
         actionsAlignment: MainAxisAlignment.center,
@@ -572,7 +573,7 @@ class _HomeScreenState extends State<HomeScreen> {
               foregroundColor: RhythmaColors.primaryFg,
             ),
             onPressed: () => Navigator.pop(ctx),
-            child: Text('OK'),
+            child: Text(l10n.homeOk),
           ),
         ],
       ),

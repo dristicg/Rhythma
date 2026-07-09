@@ -94,9 +94,9 @@ class _CalendarGridState extends State<CalendarGrid> {
                       currentDate,
                       existingLog: existingLog,
                     ).then((_) {
-                      // Optionally, refresh UI if needed
-                      // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
-                      context.read<CycleProvider>().notifyListeners(); 
+                      if (context.mounted) {
+                        context.read<CycleProvider>().refreshLogs();
+                      }
                     });
                   },
                   child: SizedBox(
