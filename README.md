@@ -520,40 +520,6 @@ The backend currently uses Firebase **only for user accounts** (via the Admin SD
 
 ---
 
-## Project Status
-
-| Area | Status |
-| --- | --- |
-| Flutter UI (screens, theming, localization) | ✅ Largely complete |
-| In-app authentication (Flutter + web + backend) | ✅ Complete |
-| Local storage (profile, settings, contacts) | ✅ Complete |
-| Local notifications | ✅ Complete |
-| Backend authentication (JWT/bcrypt) | ✅ Complete |
-| Backend Firestore (user accounts) | ✅ Complete |
-| Backend cycle log persistence (Firestore) | ✅ Complete |
-| Backend `/dashboard` (live CVI/MHS/risk from real logs) | ✅ Complete |
-| Home screen ↔ backend integration | ✅ Functional — but see cycle logging row below for why it's usually empty |
-| AI Assistant (client → Gemini directly) | ✅ Functional |
-| AI Assistant (backend endpoint) | ⚠️ Built, unused by either front end |
-| Cycle tracking (persistence) | ❌ Logging UI built, but writes to neither Hive nor the backend — **the current top-priority gap** |
-| Cycle/insights backend endpoints | ⚠️ `/cycle` is real; older `/insights/{user_id}/scores` is a stub superseded by `/dashboard` |
-| CVI / MHS scoring | ⚠️ Heuristic logic live via `/dashboard`; no trained model yet; not yet surfaced on the Insights screen |
-| SMS (Twilio) | ⚠️ Backend done; app UI built but unlinked |
-| Cloud sync (Flutter ↔ Firestore) | ❌ Stubbed only |
-| Encryption at rest | ❌ Not implemented |
-| Connectivity detection | ❌ Not implemented |
-| Website (`web/`) | ⚠️ Scaffolded — auth, routing, and i18n work; no cycle/insights/assistant pages yet |
-| First Period Guidance | ❌ Not implemented — no design, content, or code yet |
-| Ayurvedic Correlation Layer | ❌ Not implemented — no content or code yet |
-| WhatsApp Bot Integration | ❌ Not implemented — depends on backend assistant endpoint going live first |
-| Testing | ⚠️ 9 backend tests passing; Flutter suite covers onboarding + calendar grid but not yet the new auth screens; web app has no tests |
-| CI/CD | ✅ GitHub Actions run Flutter analyze/format/test and backend pytest on every PR |
-| Deployment | ⚠️ Landing page only (Vercel) |
-
-**In short:** the Flutter UI, the FastAPI backend, and now a real auth-and-dashboard connection between them are each further along than before, but cycle logging — the one action that would make the rest of the pipeline meaningful — still doesn't persist anywhere. Wiring the daily-logging bottom sheet to Hive and/or `POST /cycle/log` is the single highest-leverage next task; everything downstream of it (`/dashboard`, CVI/MHS, the Insights screen) is already built and waiting for real data. First Period Guidance, the Ayurvedic layer, the WhatsApp bot, and the website's product pages are all clean-slate or near-clean-slate feature areas — good candidates for contributors who want to own something end-to-end, but each needs a scoping discussion first (see [CONTRIBUTING.md](./CONTRIBUTING.md)).
-
----
-
 ## 🗺️ Roadmap
  
 ### Phase 1 — Core Mobile App ✅
