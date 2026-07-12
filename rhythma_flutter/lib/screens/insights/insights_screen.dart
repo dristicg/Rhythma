@@ -214,10 +214,22 @@ class InsightsScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 14),
-                TrendChart(
-                  points: const [30, 32, 29, 31, 28, 29, 30, 29, 28, 29],
-                  color: RhythmaColors.primary,
-                  height: 80,
+                Semantics(
+                  label:
+                      'Trend chart showing health metrics from July to November with relatively stable values.',
+                  child: TrendChart(
+                    points: const [30, 32, 29, 31, 28, 29, 30, 29, 28, 29],
+                    color: RhythmaColors.primary,
+                    height: 80,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Your health trends remained relatively stable over the last five months.',
+                   style: TextStyle(
+                     fontSize: 12,
+                     color: RhythmaColors.mutedFg,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Row(
@@ -300,11 +312,17 @@ class _MiniCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GlassCard(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+    return Semantics( 
+     label: '$label, value $value, change $delta',
+     child: GlassCard(
+       padding: const EdgeInsets.all(16),
+       child: Column(
+         crossAxisAlignment: CrossAxisAlignment.start,
+         children: [
+         ],
+       ),
+     ),
+    ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -377,9 +395,9 @@ class _SymptomBar extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 6),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(4),
-          child: LinearProgressIndicator(
+        Semantics(
+          label: '$label ${(fraction * 100).round()} percent',
+          child: ClipRRect(
             value: fraction,
             minHeight: 8,
             backgroundColor: RhythmaColors.surfaceMuted,
