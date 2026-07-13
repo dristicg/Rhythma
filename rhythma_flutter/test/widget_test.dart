@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -20,6 +21,14 @@ void main() {
       'cycle_length': 28,
     };
     LocalStorageService.mockEmergencyContacts = [];
+
+    // Mock FlutterSecureStorage channel method calls to prevent hanging in tests
+    const channel =
+        MethodChannel('plugins.it_nomads.com/flutter_secure_storage');
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
+      return null; // Mock success
+    });
   });
 
   // Helper to pump the Profile Screen with a standard test viewport
@@ -38,23 +47,26 @@ void main() {
           ChangeNotifierProvider(create: (_) => ThemeProvider()),
           ChangeNotifierProvider(create: (_) => ProfileProvider()),
         ],
-        child: const MaterialApp(
-          localizationsDelegates: [
+        child: MaterialApp(
+          localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          supportedLocales: [
+          supportedLocales: const [
             Locale('en'),
             Locale('hi'),
             Locale('ta'),
             Locale('te'),
             Locale('mr'),
           ],
-          home: Scaffold(
+          home: const Scaffold(
             body: ProfileScreen(),
           ),
+          routes: {
+            '/login': (_) => const Scaffold(body: Text('Login Screen')),
+          },
         ),
       ),
     );
@@ -63,7 +75,8 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('1. Profile details load successfully on start', (WidgetTester tester) async {
+  testWidgets('1. Profile details load successfully on start',
+      (WidgetTester tester) async {
     await pumpProfileScreen(tester);
 
     // Verify initial values from mock storage are displayed
@@ -73,7 +86,8 @@ void main() {
     expect(find.text('Cycle Day 12 • Follicular Phase'), findsOneWidget);
   });
 
-  testWidgets('2. Edit profile flow handles validation and saves updates', (WidgetTester tester) async {
+  testWidgets('2. Edit profile flow handles validation and saves updates',
+      (WidgetTester tester) async {
     await pumpProfileScreen(tester);
 
     // Open Edit Profile Bottom Sheet
@@ -109,7 +123,8 @@ void main() {
     // Assert validation error messages are displayed
     expect(find.text('Name cannot be empty'), findsOneWidget);
     expect(find.text('Age must be between 10 and 120'), findsOneWidget);
-    expect(find.text('Cycle length must be between 15 and 45 days'), findsOneWidget);
+    expect(find.text('Cycle length must be between 15 and 45 days'),
+        findsOneWidget);
 
     // ── Test Success Flow ──
     // Enter valid details
@@ -133,7 +148,9 @@ void main() {
     expect(LocalStorageService.mockProfile?['cycle_length'], 30);
   });
 
-  testWidgets('3. Emergency contacts CRUD flow works and validates number format', (WidgetTester tester) async {
+  testWidgets(
+      '3. Emergency contacts CRUD flow works and validates number format',
+      (WidgetTester tester) async {
     await pumpProfileScreen(tester);
 
     // Open Emergency Contacts sheet
@@ -148,8 +165,10 @@ void main() {
     await tester.tap(find.text('Add New'));
     await tester.pumpAndSettle();
 
-    final contactNameField = find.ancestor(of: find.text('Name'), matching: find.byType(TextField));
-    final contactPhoneField = find.ancestor(of: find.text('Phone'), matching: find.byType(TextField));
+    final contactNameField =
+        find.ancestor(of: find.text('Name'), matching: find.byType(TextField));
+    final contactPhoneField =
+        find.ancestor(of: find.text('Phone'), matching: find.byType(TextField));
 
     // Try to save with empty name and invalid phone number
     await tester.enterText(contactNameField, '');
@@ -159,7 +178,8 @@ void main() {
 
     // Verify error checks
     expect(find.text('Name is required'), findsOneWidget);
-    expect(find.text('Enter a valid phone number (min 8 digits)'), findsOneWidget);
+    expect(
+        find.text('Enter a valid phone number (min 8 digits)'), findsOneWidget);
 
     // Enter valid details
     await tester.enterText(contactNameField, 'Mom');
@@ -177,7 +197,8 @@ void main() {
     await tester.pumpAndSettle();
 
     // Edit Name
-    final editNameField = find.ancestor(of: find.text('Name'), matching: find.byType(TextField));
+    final editNameField =
+        find.ancestor(of: find.text('Name'), matching: find.byType(TextField));
     await tester.enterText(editNameField, 'Mother');
     await tester.tap(find.text('Save'));
     await tester.pumpAndSettle();
@@ -196,7 +217,8 @@ void main() {
     expect(find.text('No emergency contacts set up yet.'), findsOneWidget);
   });
 
-  testWidgets('4. Settings screen navigation and logout flows work', (WidgetTester tester) async {
+  testWidgets('4. Settings screen navigation and logout flows work',
+      (WidgetTester tester) async {
     await pumpProfileScreen(tester);
 
     // Tap App Settings
@@ -213,14 +235,16 @@ void main() {
     await tester.pumpAndSettle();
 
     // Verify Log Out confirmation dialog is shown
-    expect(find.text('Are you sure you want to log out of Rhythma?'), findsOneWidget);
+    expect(find.text('Are you sure you want to log out of Rhythma?'),
+        findsOneWidget);
 
     // Tap Cancel
     await tester.tap(find.text('Cancel'));
     await tester.pumpAndSettle();
 
     // Verify dialog closes and settings screen remains
-    expect(find.text('Are you sure you want to log out of Rhythma?'), findsNothing);
+    expect(find.text('Are you sure you want to log out of Rhythma?'),
+        findsNothing);
     expect(find.text('Settings'), findsOneWidget);
 
     // Tap Log Out again to test confirm logout
@@ -246,7 +270,8 @@ void main() {
     expect(LocalStorageService.mockEmergencyContacts, isEmpty);
   });
 
-  testWidgets('5. Log Entry Sheet create, edit, save flows', (WidgetTester tester) async {
+  testWidgets('5. Log Entry Sheet create, edit, save flows',
+      (WidgetTester tester) async {
     tester.view.physicalSize = const Size(800, 1200);
     tester.view.devicePixelRatio = 1.0;
     addTearDown(() {
@@ -301,13 +326,13 @@ void main() {
 
     // Verify UI rendering and pre-filled data
     expect(find.text('Log your day'), findsOneWidget);
-    
+
     // Check flow intensity
     expect(find.text('Medium'), findsWidgets);
-    
+
     // Check mood emoji
     expect(find.text('😌'), findsWidgets);
-    
+
     // Check symptoms
     expect(find.text('Cramps'), findsWidgets);
     expect(find.text('Fatigue'), findsWidgets);
