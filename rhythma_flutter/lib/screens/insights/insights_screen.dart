@@ -7,7 +7,7 @@ import '../../components/charts.dart';
 import '../../providers/theme_provider.dart';
 
 class InsightsScreen extends StatelessWidget {
-  const InsightsScreen({Key? key}) : super(key: key);
+  const InsightsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +34,8 @@ class InsightsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(l10n.insightsSubtitle,
-                    style: TextStyle(
-                        fontSize: 13, color: RhythmaColors.mutedFg)),
+                    style:
+                        TextStyle(fontSize: 13, color: RhythmaColors.mutedFg)),
               ],
             ),
           ),
@@ -85,7 +85,7 @@ class InsightsScreen extends StatelessWidget {
                           const SizedBox(height: 5),
                           Row(
                             children: [
-                              Icon(Icons.trending_up_rounded,
+                              const Icon(Icons.trending_up_rounded,
                                   size: 14, color: RhythmaColors.teal),
                               const SizedBox(width: 5),
                               Text(
@@ -204,7 +204,7 @@ class InsightsScreen extends StatelessWidget {
                       ),
                       child: Text(
                         l10n.insightsHealthy,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                           color: RhythmaColors.teal,
@@ -344,7 +344,8 @@ class _MiniCard extends StatelessWidget {
           const SizedBox(height: 3),
           Text(
             delta,
-            style: TextStyle(fontSize: 10, color: color, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                fontSize: 10, color: color, fontWeight: FontWeight.w600),
           ),
         ],
       ),
@@ -372,8 +373,7 @@ class _SymptomBar extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     color: RhythmaColors.foreground)),
             Text('${(fraction * 100).round()}%',
-                style: TextStyle(
-                    fontSize: 12, color: RhythmaColors.mutedFg)),
+                style: TextStyle(fontSize: 12, color: RhythmaColors.mutedFg)),
           ],
         ),
         const SizedBox(height: 6),
@@ -410,7 +410,7 @@ class _Rec extends StatelessWidget {
               color: color,
               shape: BoxShape.circle,
             ),
-            child: Icon(Icons.favorite_rounded,
+            child: const Icon(Icons.favorite_rounded,
                 color: Colors.white, size: 16),
           ),
           const SizedBox(width: 12),

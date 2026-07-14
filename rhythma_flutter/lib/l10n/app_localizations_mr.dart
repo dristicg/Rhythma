@@ -52,7 +52,7 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get logoutConfirmation =>
-      'तुम्हाला नक्की रिद्मा मधून लॉग आउट करायचे आहे का?';
+      'तुम्हाला रिद्मामधून नक्की लॉग आउट करायचे आहे का?';
 
   @override
   String get cancel => 'रद्द करा';
@@ -101,7 +101,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get homeLogFlow => 'प्रवाह';
 
   @override
-  String get homeLogMood => 'मूड';
+  String get homeLogMood => 'मनःस्थिती';
 
   @override
   String get homeLogSleep => 'झोप';
@@ -121,7 +121,7 @@ class AppLocalizationsMr extends AppLocalizations {
       'ओव्हुलेशनपूर्वी सातत्यपूर्ण विश्रांती हार्मोनल संतुलनास समर्थन देते.';
 
   @override
-  String get homeLearnTitle => 'रिद्मा सोबत शिका';
+  String get homeLearnTitle => 'रिद्मासोबत शिका';
 
   @override
   String get homeLearnPcos => 'PCOS समजून घेणे';
@@ -134,6 +134,26 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get homeArticle => 'लेख';
+
+  @override
+  String get homeFailedLoad => 'Failed to load dashboard';
+
+  @override
+  String get homeRetry => 'Retry';
+
+  @override
+  String get homeComingSoon => 'Coming Soon';
+
+  @override
+  String homeUnderDevelopment(String topic) {
+    return '$topic is currently under development.';
+  }
+
+  @override
+  String get homePrivacySecurity => 'Privacy & Security';
+
+  @override
+  String get homeOk => 'OK';
 
   @override
   String get cycleTrackerTitle => 'चक्र ट्रॅकर';
@@ -205,6 +225,36 @@ class AppLocalizationsMr extends AppLocalizations {
   String get logLabelSymptoms => 'लक्षणे';
 
   @override
+  String get logToday => 'Log Today';
+
+  @override
+  String get logTitle => 'Log your day';
+
+  @override
+  String get logFlowIntensity => 'Flow Intensity';
+
+  @override
+  String get logMood => 'Mood';
+
+  @override
+  String get logSleepHours => 'Sleep Hours';
+
+  @override
+  String get logStressLevel => 'Stress Level';
+
+  @override
+  String get logSave => 'Save Log';
+
+  @override
+  String get logSympFatigue => 'Fatigue';
+
+  @override
+  String get logSympNausea => 'Nausea';
+
+  @override
+  String get logSympBackPain => 'Back Pain';
+
+  @override
   String get assistantTitle => 'रिद्मा सहाय्यक';
 
   @override
@@ -227,7 +277,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get assistantSug3 => '35 दिवसांचे चक्र सामान्य आहे का?';
 
   @override
-  String get assistantSug4 => 'पीएमएस मध्ये मदत करणारे पदार्थ';
+  String get assistantSug4 => 'पीएमएसमध्ये उपयुक्त आहार';
 
   @override
   String get assistantSug5 => 'माझे पीरियड्स अनियमित आहेत — हे सामान्य आहे का?';
@@ -363,13 +413,13 @@ class AppLocalizationsMr extends AppLocalizations {
   String get navCycle => 'सायकल';
 
   @override
-  String get navAsk => 'आस्क';
+  String get navAsk => 'विचारा';
 
   @override
   String get navInsights => 'अंतर्ज्ञान';
 
   @override
-  String get navYou => 'यू';
+  String get navYou => 'प्रोफाइल';
 
   @override
   String get settingsHelpSupport => 'मदत आणि समर्थन';
