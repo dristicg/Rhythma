@@ -1167,6 +1167,8 @@ abstract class AppLocalizations {
   String get onboardingWeightInvalid;
 
   Null get insightsTrendDescription => null;
+
+  String insightsScoreValue(int i);
 }
 
 class _AppLocalizationsDelegate
