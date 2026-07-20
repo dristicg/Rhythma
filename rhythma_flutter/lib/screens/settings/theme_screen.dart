@@ -29,11 +29,11 @@ class ThemeScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: Text(
-              l10n.themeToggle), // Reusing existing localized string for title
+          title: Text(l10n.themeToggle), // Reusing existing localized string for title
           centerTitle: true,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new_rounded),
+            tooltip: MaterialLocalizations.of(context).backButtonTooltip,
             onPressed: () => Navigator.pop(context),
           ),
         ),
@@ -58,8 +58,7 @@ class ThemeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            const SectionHeader(
-                title: 'Theme Color'), // Ideally localized later
+            const SectionHeader(title: 'Theme Color'),
             GlassCard(
               padding: const EdgeInsets.all(20),
               child: Wrap(
@@ -68,33 +67,37 @@ class ThemeScreen extends StatelessWidget {
                 alignment: WrapAlignment.center,
                 children: predefinedColors.map((item) {
                   final color = item['color'] as Color;
-                  final isSelected = themeProvider.primaryColor.toARGB32() == color.toARGB32();
+                  final isSelected = themeProvider.primaryColor.value == color.value;
 
-                  return GestureDetector(
-                    onTap: () {
-                      themeProvider.setPrimaryColor(color);
-                    },
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: color,
-                        shape: BoxShape.circle,
-                        border: isSelected
-                            ? Border.all(
-                                color: RhythmaColors.foreground, width: 3)
+                  return Semantics(
+                    button: true,
+                    label: item['name'] as String,
+                    selected: isSelected,
+                    child: GestureDetector(
+                      onTap: () {
+                        themeProvider.setPrimaryColor(color);
+                      },
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: color,
+                          shape: BoxShape.circle,
+                          border: isSelected
+                              ? Border.all(color: RhythmaColors.foreground, width: 3)
+                              : null,
+                          boxShadow: [
+                            BoxShadow(
+                              color: color.withValues(alpha: 0.4),
+                              blurRadius: 8,
+                              offset: const Offset(0, 4),
+                            )
+                          ],
+                        ),
+                        child: isSelected
+                            ? const Icon(Icons.check, color: Colors.white)
                             : null,
-                        boxShadow: [
-                          BoxShadow(
-                            color: color.withValues(alpha: 0.4),
-                            blurRadius: 8,
-                            offset: const Offset(0, 4),
-                          )
-                        ],
                       ),
-                      child: isSelected
-                          ? const Icon(Icons.check, color: Colors.white)
-                          : null,
                     ),
                   );
                 }).toList(),
