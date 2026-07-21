@@ -46,6 +46,9 @@
   "homeArticle": "ARTICLE",
   "homeFailedLoad": "Failed to load dashboard",
   "homeRetry": "Retry",
+  "homeMhs": "Menstrual Health Score",
+  "homeCvi": "Cycle Variability Index",
+  "homeSleep": "Sleep",
   "homeComingSoon": "Coming Soon",
   "homeUnderDevelopment": "{topic} is currently under development.",
   "@homeUnderDevelopment": {
@@ -55,9 +58,33 @@
       }
     }
   },
+  "homeErrorNetwork": "Network connection error",
+  "homeErrorAuth": "Authentication error. Please log in again.",
+  "homeErrorServer": "Server error. Try again later.",
+  "homeErrorGeneric": "Something went wrong.",
+  "homeQuickLogTitle": "Log {label}",
+  "@homeQuickLogTitle": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "homeQuickLogSaved": "{label} saved as {value}",
+  "@homeQuickLogSaved": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "homePrivacySecurity": "Privacy & Security",
   "homeOk": "OK",
   "cycleTrackerTitle": "Cycle Tracker",
+  "cycleToday": "Today",
   "cyclePhasePeriod": "Period",
   "cyclePhaseFollicular": "Follicular",
   "cyclePhaseOvulation": "Ovulation",
@@ -232,32 +259,5 @@
   "settingsSemanticsLogout": "Double tap to log out",
   "comingSoonTitle": "Coming Soon",
   "comingSoonDesc": "This feature is currently under development.",
-  "okButton": "OK",
-  "homeErrorNetwork": "Network connection error",
-  "homeErrorAuth": "Authentication error. Please log in again.",
-  "homeErrorServer": "Server error. Try again later.",
-  "homeErrorGeneric": "Something went wrong.",
-  "cycleToday": "Today",
-  "homeMhs": "Menstrual Health Score",
-  "homeCvi": "Cycle Variability Index",
-  "homeSleep": "Sleep",
-  "homeQuickLogTitle": "Log {label}",
-  "@homeQuickLogTitle": {
-    "placeholders": {
-      "label": {
-        "type": "String"
-      }
-    }
-  },
-  "homeQuickLogSaved": "{label} saved as {value}",
-  "@homeQuickLogSaved": {
-    "placeholders": {
-      "label": {
-        "type": "String"
-      },
-      "value": {
-        "type": "String"
-      }
-    }
-  }
+  "okButton": "OK"
 }

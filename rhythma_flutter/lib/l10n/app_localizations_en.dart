@@ -142,11 +142,42 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeRetry => 'Retry';
 
   @override
+  String get homeMhs => 'Menstrual Health Score';
+
+  @override
+  String get homeCvi => 'Cycle Variability Index';
+
+  @override
+  String get homeSleep => 'Sleep';
+
+  @override
   String get homeComingSoon => 'Coming Soon';
 
   @override
   String homeUnderDevelopment(String topic) {
     return '$topic is currently under development.';
+  }
+
+  @override
+  String get homeErrorNetwork => 'Network connection error';
+
+  @override
+  String get homeErrorAuth => 'Authentication error. Please log in again.';
+
+  @override
+  String get homeErrorServer => 'Server error. Try again later.';
+
+  @override
+  String get homeErrorGeneric => 'Something went wrong.';
+
+  @override
+  String homeQuickLogTitle(String label) {
+    return 'Log $label';
+  }
+
+  @override
+  String homeQuickLogSaved(String label, String value) {
+    return '$label saved as $value';
   }
 
   @override
@@ -157,6 +188,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cycleTrackerTitle => 'Cycle Tracker';
+
+  @override
+  String get cycleToday => 'Today';
 
   @override
   String get cyclePhasePeriod => 'Period';
@@ -686,38 +720,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get okButton => 'OK';
-
-  @override
-  String get homeErrorNetwork => 'Network connection error';
-
-  @override
-  String get homeErrorAuth => 'Authentication error. Please log in again.';
-
-  @override
-  String get homeErrorServer => 'Server error. Try again later.';
-
-  @override
-  String get homeErrorGeneric => 'Something went wrong.';
-
-  @override
-  String get cycleToday => 'Today';
-
-  @override
-  String get homeMhs => 'Menstrual Health Score';
-
-  @override
-  String get homeCvi => 'Cycle Variability Index';
-
-  @override
-  String get homeSleep => 'Sleep';
-
-  @override
-  String homeQuickLogTitle(String label) {
-    return 'Log $label';
-  }
-
-  @override
-  String homeQuickLogSaved(String label, String value) {
-    return '$label saved as $value';
-  }
 }

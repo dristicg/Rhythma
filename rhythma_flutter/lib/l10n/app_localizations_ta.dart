@@ -141,11 +141,46 @@ class AppLocalizationsTa extends AppLocalizations {
   String get homeRetry => 'Retry';
 
   @override
+  String get homeMhs => 'MHS';
+
+  @override
+  String get homeCvi => 'CVI';
+
+  @override
+  String get homeSleep => 'தூக்கம்';
+
+  @override
   String get homeComingSoon => 'Coming Soon';
 
   @override
   String homeUnderDevelopment(String topic) {
     return '$topic is currently under development.';
+  }
+
+  @override
+  String get homeErrorNetwork =>
+      'இணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.';
+
+  @override
+  String get homeErrorAuth =>
+      'உங்கள் அமர்வு காலாவதியாகிவிட்டது. மீண்டும் உள்நுழையவும்.';
+
+  @override
+  String get homeErrorServer =>
+      'எங்கள் பக்கம் ஏதோ தவறு நடந்தது. பின்னர் மீண்டும் முயற்சிக்கவும்.';
+
+  @override
+  String get homeErrorGeneric =>
+      'தரவை ஏற்ற முடியவில்லை. மீண்டும் முயற்சிக்கவும்.';
+
+  @override
+  String homeQuickLogTitle(String label) {
+    return '$label பதிவு செய்யுங்கள்';
+  }
+
+  @override
+  String homeQuickLogSaved(String label, String value) {
+    return '$label பதிவு செய்யப்பட்டது: $value';
   }
 
   @override
@@ -156,6 +191,9 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get cycleTrackerTitle => 'சுழற்சி டிராக்கர்';
+
+  @override
+  String get cycleToday => 'இன்று';
 
   @override
   String get cyclePhasePeriod => 'மாதவிடாய்';
@@ -698,42 +736,4 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get okButton => 'OK';
-
-  @override
-  String get homeErrorNetwork =>
-      'இணைய இணைப்பைச் சரிபார்த்து மீண்டும் முயற்சிக்கவும்.';
-
-  @override
-  String get homeErrorAuth =>
-      'உங்கள் அமர்வு காலாவதியாகிவிட்டது. மீண்டும் உள்நுழையவும்.';
-
-  @override
-  String get homeErrorServer =>
-      'எங்கள் பக்கம் ஏதோ தவறு நடந்தது. பின்னர் மீண்டும் முயற்சிக்கவும்.';
-
-  @override
-  String get homeErrorGeneric =>
-      'தரவை ஏற்ற முடியவில்லை. மீண்டும் முயற்சிக்கவும்.';
-
-  @override
-  String get cycleToday => 'இன்று';
-
-  @override
-  String get homeMhs => 'MHS';
-
-  @override
-  String get homeCvi => 'CVI';
-
-  @override
-  String get homeSleep => 'தூக்கம்';
-
-  @override
-  String homeQuickLogTitle(String label) {
-    return '$label பதிவு செய்யுங்கள்';
-  }
-
-  @override
-  String homeQuickLogSaved(String label, String value) {
-    return '$label பதிவு செய்யப்பட்டது: $value';
-  }
 }

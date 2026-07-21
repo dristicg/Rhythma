@@ -362,6 +362,24 @@ abstract class AppLocalizations {
   /// **'Retry'**
   String get homeRetry;
 
+  /// No description provided for @homeMhs.
+  ///
+  /// In en, this message translates to:
+  /// **'Menstrual Health Score'**
+  String get homeMhs;
+
+  /// No description provided for @homeCvi.
+  ///
+  /// In en, this message translates to:
+  /// **'Cycle Variability Index'**
+  String get homeCvi;
+
+  /// No description provided for @homeSleep.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep'**
+  String get homeSleep;
+
   /// No description provided for @homeComingSoon.
   ///
   /// In en, this message translates to:
@@ -373,6 +391,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{topic} is currently under development.'**
   String homeUnderDevelopment(String topic);
+
+  /// No description provided for @homeErrorNetwork.
+  ///
+  /// In en, this message translates to:
+  /// **'Network connection error'**
+  String get homeErrorNetwork;
+
+  /// No description provided for @homeErrorAuth.
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication error. Please log in again.'**
+  String get homeErrorAuth;
+
+  /// No description provided for @homeErrorServer.
+  ///
+  /// In en, this message translates to:
+  /// **'Server error. Try again later.'**
+  String get homeErrorServer;
+
+  /// No description provided for @homeErrorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong.'**
+  String get homeErrorGeneric;
+
+  /// No description provided for @homeQuickLogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log {label}'**
+  String homeQuickLogTitle(String label);
+
+  /// No description provided for @homeQuickLogSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} saved as {value}'**
+  String homeQuickLogSaved(String label, String value);
 
   /// No description provided for @homePrivacySecurity.
   ///
@@ -391,6 +445,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cycle Tracker'**
   String get cycleTrackerTitle;
+
+  /// No description provided for @cycleToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get cycleToday;
 
   /// No description provided for @cyclePhasePeriod.
   ///
@@ -1399,66 +1459,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'OK'**
   String get okButton;
-
-  /// No description provided for @homeErrorNetwork.
-  ///
-  /// In en, this message translates to:
-  /// **'Network connection error'**
-  String get homeErrorNetwork;
-
-  /// No description provided for @homeErrorAuth.
-  ///
-  /// In en, this message translates to:
-  /// **'Authentication error. Please log in again.'**
-  String get homeErrorAuth;
-
-  /// No description provided for @homeErrorServer.
-  ///
-  /// In en, this message translates to:
-  /// **'Server error. Try again later.'**
-  String get homeErrorServer;
-
-  /// No description provided for @homeErrorGeneric.
-  ///
-  /// In en, this message translates to:
-  /// **'Something went wrong.'**
-  String get homeErrorGeneric;
-
-  /// No description provided for @cycleToday.
-  ///
-  /// In en, this message translates to:
-  /// **'Today'**
-  String get cycleToday;
-
-  /// No description provided for @homeMhs.
-  ///
-  /// In en, this message translates to:
-  /// **'Menstrual Health Score'**
-  String get homeMhs;
-
-  /// No description provided for @homeCvi.
-  ///
-  /// In en, this message translates to:
-  /// **'Cycle Variability Index'**
-  String get homeCvi;
-
-  /// No description provided for @homeSleep.
-  ///
-  /// In en, this message translates to:
-  /// **'Sleep'**
-  String get homeSleep;
-
-  /// No description provided for @homeQuickLogTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Log {label}'**
-  String homeQuickLogTitle(String label);
-
-  /// No description provided for @homeQuickLogSaved.
-  ///
-  /// In en, this message translates to:
-  /// **'{label} saved as {value}'**
-  String homeQuickLogSaved(String label, String value);
 }
 
 class _AppLocalizationsDelegate
