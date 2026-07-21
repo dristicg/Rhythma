@@ -63,7 +63,8 @@ class _InsightsScreenState extends State<InsightsScreen> {
             .whereType<num>()
             .map((n) => n.toInt())
             .toList();
-        _symptomFrequency = symptomFreq.map((k, v) => MapEntry(k.toString(), (v as num).toDouble()));
+        _symptomFrequency = symptomFreq
+            .map((k, v) => MapEntry(k.toString(), (v as num).toDouble()));
         _recentStressLevel = (data['recentStressLevel'] as num?)?.toInt();
         _loading = false;
       });
@@ -79,7 +80,8 @@ class _InsightsScreenState extends State<InsightsScreen> {
     if (lengths.length < 2) return 0;
     final mean = lengths.reduce((a, b) => a + b) / lengths.length;
     final variance =
-        lengths.map((v) => (v - mean) * (v - mean)).reduce((a, b) => a + b) / lengths.length;
+        lengths.map((v) => (v - mean) * (v - mean)).reduce((a, b) => a + b) /
+            lengths.length;
     return variance <= 0 ? 0 : variance.round();
   }
 
@@ -158,7 +160,8 @@ class _InsightsScreenState extends State<InsightsScreen> {
                   ),
                   const SizedBox(height: 2),
                   Text(l10n.insightsSubtitle,
-                      style: TextStyle(fontSize: 13, color: RhythmaColors.mutedFg)),
+                      style: TextStyle(
+                          fontSize: 13, color: RhythmaColors.mutedFg)),
                 ],
               ),
             ),
@@ -169,12 +172,14 @@ class _InsightsScreenState extends State<InsightsScreen> {
                 child: GlassCard(
                   child: Row(
                     children: [
-                      Icon(Icons.error_outline, color: RhythmaColors.rose, size: 20),
+                      Icon(Icons.error_outline,
+                          color: RhythmaColors.rose, size: 20),
                       const SizedBox(width: 10),
                       Expanded(
                         child: Text(
                           l10n.insightsLoadError(_error),
-                          style: TextStyle(color: RhythmaColors.mutedFg, fontSize: 12),
+                          style: TextStyle(
+                              color: RhythmaColors.mutedFg, fontSize: 12),
                         ),
                       ),
                     ],
@@ -187,12 +192,14 @@ class _InsightsScreenState extends State<InsightsScreen> {
                 child: GlassCard(
                   child: Row(
                     children: [
-                      Icon(Icons.hourglass_top_rounded, color: RhythmaColors.primary, size: 20),
+                      Icon(Icons.hourglass_top_rounded,
+                          color: RhythmaColors.primary, size: 20),
                       const SizedBox(width: 10),
                       Expanded(
                         child: Text(
                           l10n.insightsNotEnoughData,
-                          style: TextStyle(color: RhythmaColors.mutedFg, fontSize: 12),
+                          style: TextStyle(
+                              color: RhythmaColors.mutedFg, fontSize: 12),
                         ),
                       ),
                     ],
@@ -245,12 +252,17 @@ class _InsightsScreenState extends State<InsightsScreen> {
                             const SizedBox(height: 5),
                             Row(
                               children: [
-                                Icon(Icons.info_outline_rounded, size: 14, color: RhythmaColors.mutedFg),
+                                Icon(Icons.info_outline_rounded,
+                                    size: 14, color: RhythmaColors.mutedFg),
                                 const SizedBox(width: 5),
                                 Expanded(
                                   child: Text(
-                                    _cvi != null ? '${l10n.insightsRegular} · CVI: $_cvi' : l10n.insightsMhsDelta,
-                                    style: TextStyle(fontSize: 12, color: RhythmaColors.mutedFg),
+                                    _cvi != null
+                                        ? '${l10n.insightsRegular} · CVI: $_cvi'
+                                        : l10n.insightsMhsDelta,
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: RhythmaColors.mutedFg),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -273,7 +285,9 @@ class _InsightsScreenState extends State<InsightsScreen> {
                 Expanded(
                   child: _MiniCard(
                     label: l10n.insightsVar,
-                    value: _cycleLengthTrend.length >= 2 ? '$variability ${l10n.homeDaysLabel}' : '—',
+                    value: _cycleLengthTrend.length >= 2
+                        ? '$variability ${l10n.homeDaysLabel}'
+                        : '—',
                     delta: isStable ? l10n.logEnergyLow : l10n.insightsModerate,
                     trendUp: false,
                     color: RhythmaColors.teal,
@@ -284,7 +298,9 @@ class _InsightsScreenState extends State<InsightsScreen> {
                 Expanded(
                   child: _MiniCard(
                     label: l10n.insightsAvgCycle,
-                    value: _avgCycleLength != null ? '$_avgCycleLength ${l10n.homeDaysLabel}' : '—',
+                    value: _avgCycleLength != null
+                        ? '$_avgCycleLength ${l10n.homeDaysLabel}'
+                        : '—',
                     delta: l10n.insightsRegular,
                     trendUp: true,
                     color: RhythmaColors.primary,
@@ -344,7 +360,9 @@ class _InsightsScreenState extends State<InsightsScreen> {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              isStable ? l10n.insightsStabilizing : l10n.insightsModerate,
+                              isStable
+                                  ? l10n.insightsStabilizing
+                                  : l10n.insightsModerate,
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
@@ -355,17 +373,25 @@ class _InsightsScreenState extends State<InsightsScreen> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
                         decoration: BoxDecoration(
-                          color: (isStable ? RhythmaColors.teal : RhythmaColors.coral).withOpacity(0.14),
+                          color: (isStable
+                                  ? RhythmaColors.teal
+                                  : RhythmaColors.coral)
+                              .withOpacity(0.14),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
-                          isStable ? l10n.insightsHealthy : l10n.insightsModerate,
+                          isStable
+                              ? l10n.insightsHealthy
+                              : l10n.insightsModerate,
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
-                            color: isStable ? RhythmaColors.teal : RhythmaColors.coral,
+                            color: isStable
+                                ? RhythmaColors.teal
+                                : RhythmaColors.coral,
                           ),
                         ),
                       ),
@@ -379,13 +405,15 @@ class _InsightsScreenState extends State<InsightsScreen> {
                         child: Text(
                           l10n.insightsNotEnoughTrendData,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 12, color: RhythmaColors.mutedFg),
+                          style: TextStyle(
+                              fontSize: 12, color: RhythmaColors.mutedFg),
                         ),
                       ),
                     )
                   else
                     TrendChart(
-                      points: _cycleLengthTrend.map((e) => e.toDouble()).toList(),
+                      points:
+                          _cycleLengthTrend.map((e) => e.toDouble()).toList(),
                       color: RhythmaColors.primary,
                       height: 80,
                     ),
@@ -412,18 +440,25 @@ class _InsightsScreenState extends State<InsightsScreen> {
                   if (_symptomFrequency.isEmpty)
                     Text(
                       l10n.insightsNoSymptomsYet,
-                      style: TextStyle(fontSize: 12, color: RhythmaColors.mutedFg),
+                      style:
+                          TextStyle(fontSize: 12, color: RhythmaColors.mutedFg),
                     )
                   else ...[
-                    _SymptomBar(_symptomLabel('cramps', l10n), _symptomFrequency['cramps'] ?? 0, RhythmaColors.rose),
+                    _SymptomBar(_symptomLabel('cramps', l10n),
+                        _symptomFrequency['cramps'] ?? 0, RhythmaColors.rose),
                     const SizedBox(height: 12),
                     _SymptomBar(
-                        _symptomLabel('headache', l10n), _symptomFrequency['headache'] ?? 0, RhythmaColors.coral),
+                        _symptomLabel('headache', l10n),
+                        _symptomFrequency['headache'] ?? 0,
+                        RhythmaColors.coral),
                     const SizedBox(height: 12),
                     _SymptomBar(
-                        _symptomLabel('bloating', l10n), _symptomFrequency['bloating'] ?? 0, RhythmaColors.primary),
+                        _symptomLabel('bloating', l10n),
+                        _symptomFrequency['bloating'] ?? 0,
+                        RhythmaColors.primary),
                     const SizedBox(height: 12),
-                    _SymptomBar(_symptomLabel('acne', l10n), _symptomFrequency['acne'] ?? 0, RhythmaColors.teal),
+                    _SymptomBar(_symptomLabel('acne', l10n),
+                        _symptomFrequency['acne'] ?? 0, RhythmaColors.teal),
                   ],
                 ],
               ),
@@ -461,66 +496,69 @@ class _MiniCard extends StatelessWidget {
     required this.icon,
   });
 
- @override
-Widget build(BuildContext context) {
-  return Semantics(
-    label: '$label, value $value, change $delta',
-    child: GlassCard(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: 34,
-                height: 34,
-                decoration: BoxDecoration(
-                  color: color.withValues(alpha: 0.14),
-                  borderRadius: BorderRadius.circular(10),
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      label: '$label, value $value, change $delta',
+      child: GlassCard(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: 34,
+                  height: 34,
+                  decoration: BoxDecoration(
+                    color: color.withValues(alpha: 0.14),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: ExcludeSemantics(
+                    child: Icon(icon, color: color, size: 17),
+                  ),
                 ),
-                child: ExcludeSemantics(
-                  child: Icon(icon, color: color, size: 17),
+                Icon(
+                  trendUp
+                      ? Icons.trending_up_rounded
+                      : Icons.trending_down_rounded,
+                  size: 16,
+                  color: color,
                 ),
-              ),
-              Icon(
-                trendUp ? Icons.trending_up_rounded : Icons.trending_down_rounded,
-                size: 16,
-                color: color,
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 11,
-              color: RhythmaColors.mutedFg,
+              ],
             ),
-          ),
-          const SizedBox(height: 3),
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: RhythmaColors.foreground,
-              height: 1,
+            const SizedBox(height: 12),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 11,
+                color: RhythmaColors.mutedFg,
+              ),
             ),
-          ),
-          if (delta.isNotEmpty) ...[
             const SizedBox(height: 3),
             Text(
-              delta,
-              style: TextStyle(fontSize: 10, color: color, fontWeight: FontWeight.w600),
+              value,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+                color: RhythmaColors.foreground,
+                height: 1,
+              ),
             ),
+            if (delta.isNotEmpty) ...[
+              const SizedBox(height: 3),
+              Text(
+                delta,
+                style: TextStyle(
+                    fontSize: 10, color: color, fontWeight: FontWeight.w600),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 }
 
 class _SymptomBar extends StatelessWidget {
@@ -540,7 +578,9 @@ class _SymptomBar extends StatelessWidget {
           children: [
             Text(label,
                 style: TextStyle(
-                    fontSize: 13, fontWeight: FontWeight.w600, color: RhythmaColors.foreground)),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: RhythmaColors.foreground)),
             Text('${(fraction * 100).round()}%',
                 style: TextStyle(fontSize: 12, color: RhythmaColors.mutedFg)),
           ],
@@ -548,14 +588,14 @@ class _SymptomBar extends StatelessWidget {
         const SizedBox(height: 6),
         Semantics(
           label: '$label ${(fraction * 100).round()} percent',
-          child:ClipRRect(
-                  borderRadius: BorderRadius.circular(4),
-                  child: LinearProgressIndicator(
-                  value: fraction,
-                  minHeight: 8,
-                  backgroundColor: RhythmaColors.surfaceMuted,
-                  valueColor: AlwaysStoppedAnimation(color),
-             ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: LinearProgressIndicator(
+              value: fraction,
+              minHeight: 8,
+              backgroundColor: RhythmaColors.surfaceMuted,
+              valueColor: AlwaysStoppedAnimation(color),
+            ),
           ),
         ),
       ],

@@ -27,14 +27,17 @@ void mockNotificationPlatformChannels({bool permissionGranted = true}) {
   FlutterLocalNotificationsPlatform.instance = FakeLocalNotificationsPlatform();
 
   // Setup standard MethodChannel interceptors
-  const MethodChannel permissionChannel = MethodChannel('plugins.flutter.io/permissions');
-  const MethodChannel notificationChannel = MethodChannel('dexterous.com/flutter_local_notifications');
+  const MethodChannel permissionChannel =
+      MethodChannel('plugins.flutter.io/permissions');
+  const MethodChannel notificationChannel =
+      MethodChannel('dexterous.com/flutter_local_notifications');
 
   TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-      .setMockMethodCallHandler(permissionChannel, (MethodCall methodCall) async {
+      .setMockMethodCallHandler(permissionChannel,
+          (MethodCall methodCall) async {
     if (methodCall.method == 'requestPermissions') {
       // Return 1 (granted) or 0 (denied) based on the test parameters
-      return {0: permissionGranted ? 1 : 0}; 
+      return {0: permissionGranted ? 1 : 0};
     }
     if (methodCall.method == 'checkPermissionStatus') {
       return permissionGranted ? 1 : 0;
@@ -43,7 +46,8 @@ void mockNotificationPlatformChannels({bool permissionGranted = true}) {
   });
 
   TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-      .setMockMethodCallHandler(notificationChannel, (MethodCall methodCall) async {
+      .setMockMethodCallHandler(notificationChannel,
+          (MethodCall methodCall) async {
     if (methodCall.method == 'initialize') {
       return true;
     }

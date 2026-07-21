@@ -27,11 +27,10 @@ class DashboardProvider extends ChangeNotifier {
     try {
       final dio = ApiClient.dio;
       final response = await dio.get('/dashboard');
-      
+
       _userData = response.data['user'] ?? {};
       _cycleData = response.data['cycle'] ?? {};
       _insights = response.data['insights'] ?? {};
-      
     } catch (e) {
       _error = _friendlyErrorMessage(e);
     } finally {

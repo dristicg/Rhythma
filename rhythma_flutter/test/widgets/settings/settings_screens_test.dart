@@ -30,8 +30,10 @@ void main() {
     await tester.pumpWidget(
       MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => localeProvider ?? LocaleProvider()),
-          ChangeNotifierProvider(create: (_) => themeProvider ?? ThemeProvider()),
+          ChangeNotifierProvider(
+              create: (_) => localeProvider ?? LocaleProvider()),
+          ChangeNotifierProvider(
+              create: (_) => themeProvider ?? ThemeProvider()),
           ChangeNotifierProvider(create: (_) => ProfileProvider()), // <-- added
         ],
         child: MaterialApp(
@@ -45,7 +47,8 @@ void main() {
   }
 
   group('LanguageScreen', () {
-    testWidgets('lists every supported language with English selected by default',
+    testWidgets(
+        'lists every supported language with English selected by default',
         (WidgetTester tester) async {
       await pumpScreen(tester, const LanguageScreen());
 
@@ -65,10 +68,12 @@ void main() {
       expect(find.byIcon(Icons.check_circle_rounded), findsOneWidget);
     });
 
-    testWidgets('tapping a language updates LocaleProvider and moves the checkmark',
+    testWidgets(
+        'tapping a language updates LocaleProvider and moves the checkmark',
         (WidgetTester tester) async {
       final localeProvider = LocaleProvider();
-      await pumpScreen(tester, const LanguageScreen(), localeProvider: localeProvider);
+      await pumpScreen(tester, const LanguageScreen(),
+          localeProvider: localeProvider);
 
       await tester.tap(find.text('हिन्दी (Hindi)'));
       await tester.pumpAndSettle();
@@ -86,10 +91,12 @@ void main() {
   });
 
   group('ThemeScreen', () {
-    testWidgets('dark mode switch reflects and toggles ThemeProvider.isDarkMode',
+    testWidgets(
+        'dark mode switch reflects and toggles ThemeProvider.isDarkMode',
         (WidgetTester tester) async {
       final themeProvider = ThemeProvider();
-      await pumpScreen(tester, const ThemeScreen(), themeProvider: themeProvider);
+      await pumpScreen(tester, const ThemeScreen(),
+          themeProvider: themeProvider);
 
       expect(find.text('Theme toggle'), findsOneWidget);
 
@@ -107,12 +114,12 @@ void main() {
     testWidgets('tapping a swatch updates ThemeProvider.primaryColor',
         (WidgetTester tester) async {
       final themeProvider = ThemeProvider();
-      await pumpScreen(tester, const ThemeScreen(), themeProvider: themeProvider);
+      await pumpScreen(tester, const ThemeScreen(),
+          themeProvider: themeProvider);
 
       expect(find.text('Theme Color'), findsOneWidget);
 
-      final rosePink =
-          ThemeScreen.predefinedColors[1]['color'] as Color;
+      final rosePink = ThemeScreen.predefinedColors[1]['color'] as Color;
       expect(themeProvider.primaryColor, isNot(rosePink));
 
       final swatchFinder = find.byWidgetPredicate((widget) {

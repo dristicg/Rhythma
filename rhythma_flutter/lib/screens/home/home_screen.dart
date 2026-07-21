@@ -338,13 +338,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Icon(Icons.chat_bubble_outline_rounded,
                                       size: 15,
-                                      color: Colors.white.withValues(alpha: 0.9)),
+                                      color:
+                                          Colors.white.withValues(alpha: 0.9)),
                                   const SizedBox(width: 8),
                                   Text(
                                     l10n.homeAiPrompt,
                                     style: TextStyle(
                                       fontSize: 13,
-                                      color: Colors.white.withValues(alpha: 0.9),
+                                      color:
+                                          Colors.white.withValues(alpha: 0.9),
                                     ),
                                   ),
                                 ],
@@ -665,7 +667,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           _buildQuickLog(field, _coerce(field, opt.value)),
                         );
                         messenger.showSnackBar(
-                          SnackBar(content: Text('$label logged: ${opt.label}')),
+                          SnackBar(
+                              content: Text('$label logged: ${opt.label}')),
                         );
                         _fetchDashboardData();
                       } catch (_) {
@@ -687,7 +690,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       child: Text(
                         opt.label,
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: RhythmaColors.foreground),
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: RhythmaColors.foreground),
                       ),
                     ),
                   );
@@ -838,7 +844,8 @@ class _LearnCard extends StatelessWidget {
                   ],
                 ),
           color: isDark ? color.withValues(alpha: 0.15) : null,
-          border: isDark ? Border.all(color: color.withValues(alpha: 0.3)) : null,
+          border:
+              isDark ? Border.all(color: color.withValues(alpha: 0.3)) : null,
           borderRadius: BorderRadius.circular(20),
         ),
         padding: const EdgeInsets.all(16),
@@ -872,6 +879,5 @@ class _LearnCard extends StatelessWidget {
 }
 
 extension on Widget {
-  Widget opacity(double value) =>
-      Opacity(opacity: value, child: this);
+  Widget opacity(double value) => Opacity(opacity: value, child: this);
 }

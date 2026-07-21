@@ -79,7 +79,8 @@ class _CalendarGridState extends State<CalendarGrid> {
 
                 final hasLog = cycleProvider.hasLogsForDate(currentDate);
 
-                final isFuture = currentDate.isAfter(DateTime(today.year, today.month, today.day));
+                final isFuture = currentDate
+                    .isAfter(DateTime(today.year, today.month, today.day));
 
                 return GestureDetector(
                   onTap: isFuture

@@ -285,7 +285,7 @@ class _AssistantScreenState extends State<AssistantScreen> {
                   borderRadius: BorderRadius.circular(28),
                   border: Border.all(
                     color: RhythmaColors.lavender.withValues(alpha: 0.5),
-                   ),
+                  ),
                 ),
                 child: Row(
                   children: [
@@ -312,10 +312,11 @@ class _AssistantScreenState extends State<AssistantScreen> {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                          gradient: _isLoading ? null : RhythmaGradients.primary,
-                          color: _isLoading
-                            ? RhythmaColors.mutedFg.withValues(alpha: 0.25)
-                            : null,
+                            gradient:
+                                _isLoading ? null : RhythmaGradients.primary,
+                            color: _isLoading
+                                ? RhythmaColors.mutedFg.withValues(alpha: 0.25)
+                                : null,
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(Icons.send_rounded,
@@ -510,7 +511,8 @@ class _TypingBubble extends StatelessWidget {
               bottomRight: Radius.circular(18),
               bottomLeft: Radius.circular(4),
             ),
-            border: Border.all(color: RhythmaColors.lavender.withValues(alpha: 0.4)),
+            border: Border.all(
+                color: RhythmaColors.lavender.withValues(alpha: 0.4)),
           ),
           child: Row(mainAxisSize: MainAxisSize.min, children: [
             _dot(0),

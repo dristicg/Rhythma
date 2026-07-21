@@ -62,30 +62,30 @@ class RhythmaColors {
       lavender = selectedPrimary.withValues(alpha: 0.3);
 
       // Adapt the background to the chosen color
-background = Color.alphaBlend(
-  selectedPrimary.withValues(alpha: 0.04),
-  const Color(0xFFFFFFFF),
-);
+      background = Color.alphaBlend(
+        selectedPrimary.withValues(alpha: 0.04),
+        const Color(0xFFFFFFFF),
+      );
 
-backgroundEnd = Color.alphaBlend(
-  selectedPrimary.withValues(alpha: 0.10),
-  const Color(0xFFFFFFFF),
-);
+      backgroundEnd = Color.alphaBlend(
+        selectedPrimary.withValues(alpha: 0.10),
+        const Color(0xFFFFFFFF),
+      );
 
-surface = const Color(0xFFFFFFFF);
+      surface = const Color(0xFFFFFFFF);
 
-surfaceMuted = Color.alphaBlend(
-  selectedPrimary.withValues(alpha: 0.07),
-  const Color(0xFFFFFFFF),
-);
+      surfaceMuted = Color.alphaBlend(
+        selectedPrimary.withValues(alpha: 0.07),
+        const Color(0xFFFFFFFF),
+      );
 
-foreground = const Color(0xFF2D1F47);
-mutedFg = const Color(0xFF7A6E8A);
+      foreground = const Color(0xFF2D1F47);
+      mutedFg = const Color(0xFF7A6E8A);
 
-border = Color.alphaBlend(
-  selectedPrimary.withValues(alpha: 0.15),
-  const Color(0xFFFFFFFF),
-);
+      border = Color.alphaBlend(
+        selectedPrimary.withValues(alpha: 0.15),
+        const Color(0xFFFFFFFF),
+      );
     }
   }
 }

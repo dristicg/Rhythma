@@ -365,12 +365,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       size: 36,
                     ),
                     title: const Text('SMS Cycle Summaries'),
-                    subtitle: const Text('Get a text summary sent to your phone'),
-                    trailing: Icon(Icons.chevron_right_rounded, color: RhythmaColors.mutedFg),
+                    subtitle:
+                        const Text('Get a text summary sent to your phone'),
+                    trailing: Icon(Icons.chevron_right_rounded,
+                        color: RhythmaColors.mutedFg),
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const SmsScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => const SmsScreen()),
                       );
                     },
                   ),

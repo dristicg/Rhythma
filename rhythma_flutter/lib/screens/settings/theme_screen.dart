@@ -68,7 +68,8 @@ class ThemeScreen extends StatelessWidget {
                 alignment: WrapAlignment.center,
                 children: predefinedColors.map((item) {
                   final color = item['color'] as Color;
-                  final isSelected = themeProvider.primaryColor.toARGB32() == color.toARGB32();
+                  final isSelected =
+                      themeProvider.primaryColor.toARGB32() == color.toARGB32();
 
                   return Semantics(
                     button: true,

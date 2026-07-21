@@ -402,8 +402,7 @@ void main() {
 
   testWidgets(
       '7. Medicine Alerts toggle requests notification permission and '
-      'schedules/cancels the alert accordingly',
-      (WidgetTester tester) async {
+      'schedules/cancels the alert accordingly', (WidgetTester tester) async {
     // Medicine Alerts is the one toggle that talks to NotificationService
     // (permission_handler + flutter_local_notifications), so we stub both
     // plugins' platform channels first — see test_helpers for why.
@@ -413,7 +412,8 @@ void main() {
     await tester.tap(find.text('App Settings'));
     await tester.pumpAndSettle();
 
-    final medicineSwitch = find.widgetWithText(SwitchListTile, 'Medicine Alerts');
+    final medicineSwitch =
+        find.widgetWithText(SwitchListTile, 'Medicine Alerts');
     expect(tester.widget<SwitchListTile>(medicineSwitch).value, isTrue);
 
     // Turn OFF: confirm dialog, then SettingsScreen cancels the pending

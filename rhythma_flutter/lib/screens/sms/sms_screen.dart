@@ -115,7 +115,8 @@ class _SmsScreenState extends State<SmsScreen> {
 
     setState(() => _sending = true);
     try {
-      await _sms.sendSummary(phoneNumber: phone, message: l10n.smsSummaryMessage);
+      await _sms.sendSummary(
+          phoneNumber: phone, message: l10n.smsSummaryMessage);
       _showSnack(l10n.smsSuccessSent);
     } catch (e) {
       _showSnack(_friendlyError(e, l10n), isError: true);
@@ -139,7 +140,9 @@ class _SmsScreenState extends State<SmsScreen> {
         return l10n.smsErrorSessionExpired;
       }
       final data = e.response?.data;
-      if (data is Map && data['detail'] is String && (data['detail'] as String).isNotEmpty) {
+      if (data is Map &&
+          data['detail'] is String &&
+          (data['detail'] as String).isNotEmpty) {
         return data['detail'] as String;
       }
       if (e.type == DioExceptionType.connectionError ||
@@ -197,7 +200,8 @@ class _SmsScreenState extends State<SmsScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(l10n.smsScreenSubtitle,
-                          style: TextStyle(fontSize: 13, color: RhythmaColors.mutedFg)),
+                          style: TextStyle(
+                              fontSize: 13, color: RhythmaColors.mutedFg)),
                       const SizedBox(height: 20),
 
                       if (_loadError.isNotEmpty)
@@ -206,12 +210,15 @@ class _SmsScreenState extends State<SmsScreen> {
                           child: GlassCard(
                             child: Row(
                               children: [
-                                Icon(Icons.error_outline, color: RhythmaColors.rose, size: 20),
+                                Icon(Icons.error_outline,
+                                    color: RhythmaColors.rose, size: 20),
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: Text(
                                     _loadError,
-                                    style: TextStyle(color: RhythmaColors.mutedFg, fontSize: 12),
+                                    style: TextStyle(
+                                        color: RhythmaColors.mutedFg,
+                                        fontSize: 12),
                                   ),
                                 ),
                               ],
@@ -226,7 +233,9 @@ class _SmsScreenState extends State<SmsScreen> {
                           children: [
                             Row(
                               children: [
-                                TintedIcon(icon: Icons.sms_rounded, color: RhythmaColors.teal),
+                                TintedIcon(
+                                    icon: Icons.sms_rounded,
+                                    color: RhythmaColors.teal),
                                 const SizedBox(width: 12),
                                 Expanded(
                                   child: Text(l10n.smsInfoCardTitle,
@@ -241,7 +250,9 @@ class _SmsScreenState extends State<SmsScreen> {
                             Text(
                               l10n.smsInfoCardBody,
                               style: TextStyle(
-                                  fontSize: 13, color: RhythmaColors.mutedFg, height: 1.5),
+                                  fontSize: 13,
+                                  color: RhythmaColors.mutedFg,
+                                  height: 1.5),
                             ),
                           ],
                         ),
@@ -276,13 +287,16 @@ class _SmsScreenState extends State<SmsScreen> {
                                 Expanded(
                                   child: Text(l10n.smsEnableWeekly,
                                       style: TextStyle(
-                                          fontSize: 14, color: RhythmaColors.foreground)),
+                                          fontSize: 14,
+                                          color: RhythmaColors.foreground)),
                                 ),
                                 Switch(
                                   value: _smsEnabled,
-                                  onChanged: (v) => setState(() => _smsEnabled = v),
+                                  onChanged: (v) =>
+                                      setState(() => _smsEnabled = v),
                                   activeThumbColor: RhythmaColors.primary,
-                                  activeTrackColor: RhythmaColors.primary.withValues(alpha: 0.5),
+                                  activeTrackColor: RhythmaColors.primary
+                                      .withValues(alpha: 0.5),
                                 ),
                               ],
                             ),
@@ -296,7 +310,8 @@ class _SmsScreenState extends State<SmsScreen> {
                                         width: 18,
                                         height: 18,
                                         child: CircularProgressIndicator(
-                                            strokeWidth: 2, color: Colors.white))
+                                            strokeWidth: 2,
+                                            color: Colors.white))
                                     : Text(l10n.smsSaveSettings),
                               ),
                             ),
@@ -321,7 +336,8 @@ class _SmsScreenState extends State<SmsScreen> {
                             if (hasPhone) ...[
                               Text(
                                 l10n.smsSendRecipientPrefix,
-                                style: TextStyle(fontSize: 12, color: RhythmaColors.mutedFg),
+                                style: TextStyle(
+                                    fontSize: 12, color: RhythmaColors.mutedFg),
                               ),
                               Text(
                                 _phoneCtrl.text.trim(),
@@ -333,7 +349,8 @@ class _SmsScreenState extends State<SmsScreen> {
                             ] else
                               Text(
                                 l10n.smsSendNoPhone,
-                                style: TextStyle(fontSize: 12, color: RhythmaColors.mutedFg),
+                                style: TextStyle(
+                                    fontSize: 12, color: RhythmaColors.mutedFg),
                               ),
                             const SizedBox(height: 10),
                             Container(
@@ -355,13 +372,16 @@ class _SmsScreenState extends State<SmsScreen> {
                             SizedBox(
                               width: double.infinity,
                               child: ElevatedButton(
-                                onPressed: (_sending || !hasPhone) ? null : _sendSummaryNow,
+                                onPressed: (_sending || !hasPhone)
+                                    ? null
+                                    : _sendSummaryNow,
                                 child: _sending
                                     ? const SizedBox(
                                         width: 18,
                                         height: 18,
                                         child: CircularProgressIndicator(
-                                            strokeWidth: 2, color: Colors.white))
+                                            strokeWidth: 2,
+                                            color: Colors.white))
                                     : Text(l10n.smsSendButton),
                               ),
                             ),

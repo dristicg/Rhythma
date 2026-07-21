@@ -21,7 +21,8 @@ void showComingSoonDialog(BuildContext context, String topic) {
   showDialog(
     context: context,
     builder: (ctx) => AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(RhythmaDimens.radiusLarge)),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(RhythmaDimens.radiusLarge)),
       title: Text(l10n.homeComingSoon,
           textAlign: TextAlign.center,
           style: TextStyle(color: RhythmaColors.primary)),
@@ -56,7 +57,8 @@ class HomeHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(2, RhythmaDimens.gapSmall, 2, RhythmaDimens.gapLarge),
+      padding: const EdgeInsets.fromLTRB(
+          2, RhythmaDimens.gapSmall, 2, RhythmaDimens.gapLarge),
       child: Row(
         children: [
           Expanded(
@@ -94,7 +96,8 @@ class HomeHeaderWidget extends StatelessWidget {
           const SizedBox(width: RhythmaDimens.gapSmall),
           HeaderIcon(
             icon: Icons.shield_outlined,
-            onTap: () => showComingSoonDialog(context, l10n.homePrivacySecurity),
+            onTap: () =>
+                showComingSoonDialog(context, l10n.homePrivacySecurity),
           ),
         ],
       ),
@@ -116,7 +119,8 @@ class HeaderIcon extends StatelessWidget {
       child: SizedBox(
         width: RhythmaDimens.headerIconSize,
         height: RhythmaDimens.headerIconSize,
-        child: Icon(icon, size: RhythmaDimens.iconLarge, color: RhythmaColors.foreground),
+        child: Icon(icon,
+            size: RhythmaDimens.iconLarge, color: RhythmaColors.foreground),
       ),
     );
   }
@@ -166,7 +170,10 @@ class HomeCycleCardWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  CycleRing(day: cycleDay, total: totalCycle, size: RhythmaDimens.cycleRingSize),
+                  CycleRing(
+                      day: cycleDay,
+                      total: totalCycle,
+                      size: RhythmaDimens.cycleRingSize),
                   const SizedBox(width: RhythmaDimens.iconLarge),
                   Expanded(
                     child: Column(
@@ -237,11 +244,20 @@ class HomeCycleCardWidget extends StatelessWidget {
               const SizedBox(height: RhythmaDimens.gapLarge),
               Row(
                 children: [
-                  StatCell(label: l10n.homeMhs, value: '$mhs', color: RhythmaColors.primary),
+                  StatCell(
+                      label: l10n.homeMhs,
+                      value: '$mhs',
+                      color: RhythmaColors.primary),
                   StatDivider(),
-                  StatCell(label: l10n.homeCvi, value: '$cvi', color: RhythmaColors.teal),
+                  StatCell(
+                      label: l10n.homeCvi,
+                      value: '$cvi',
+                      color: RhythmaColors.teal),
                   StatDivider(),
-                  StatCell(label: l10n.homeSleep, value: '$sleepHours', color: RhythmaColors.coral),
+                  StatCell(
+                      label: l10n.homeSleep,
+                      value: '$sleepHours',
+                      color: RhythmaColors.coral),
                 ],
               ),
             ],
@@ -321,7 +337,8 @@ class HomeAssistantCardWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.auto_awesome_rounded, size: RhythmaDimens.iconSmall, color: Colors.white),
+                  const Icon(Icons.auto_awesome_rounded,
+                      size: RhythmaDimens.iconSmall, color: Colors.white),
                   const SizedBox(width: 6),
                   Text(
                     l10n.homeAiTitle,
@@ -353,10 +370,12 @@ class HomeAssistantCardWidget extends StatelessWidget {
                         Navigator.pushNamed(context, '/assistant');
                       },
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 14, vertical: 10),
                         decoration: BoxDecoration(
                           color: Colors.white.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(RhythmaDimens.radiusLarge),
+                          borderRadius:
+                              BorderRadius.circular(RhythmaDimens.radiusLarge),
                         ),
                         child: Row(
                           children: [
@@ -381,9 +400,11 @@ class HomeAssistantCardWidget extends StatelessWidget {
                     height: 40,
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.25),
-                      borderRadius: BorderRadius.circular(RhythmaDimens.radiusLarge),
+                      borderRadius:
+                          BorderRadius.circular(RhythmaDimens.radiusLarge),
                     ),
-                    child: const Icon(Icons.mic_rounded, size: RhythmaDimens.iconLarge, color: Colors.white),
+                    child: const Icon(Icons.mic_rounded,
+                        size: RhythmaDimens.iconLarge, color: Colors.white),
                   ),
                 ],
               ),
@@ -403,7 +424,8 @@ class HomeLogGridWidget extends StatelessWidget {
   final VoidCallback onLogSaved;
   const HomeLogGridWidget({super.key, required this.onLogSaved});
 
-  void _showQuickLogSheet(BuildContext context, {
+  void _showQuickLogSheet(
+    BuildContext context, {
     required String field,
     required String label,
     required IconData icon,
@@ -419,7 +441,8 @@ class HomeLogGridWidget extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: RhythmaColors.surface,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(RhythmaDimens.radiusSheet)),
+            borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(RhythmaDimens.radiusSheet)),
           ),
           padding: const EdgeInsets.all(RhythmaDimens.gapXl),
           child: Column(
@@ -433,9 +456,11 @@ class HomeLogGridWidget extends StatelessWidget {
                     height: RhythmaDimens.tintedIconSize,
                     decoration: BoxDecoration(
                       color: color.withOpacity(0.15),
-                      borderRadius: BorderRadius.circular(RhythmaDimens.tintedIconRadius),
+                      borderRadius:
+                          BorderRadius.circular(RhythmaDimens.tintedIconRadius),
                     ),
-                    child: Icon(icon, color: color, size: RhythmaDimens.iconMedium),
+                    child: Icon(icon,
+                        color: color, size: RhythmaDimens.iconMedium),
                   ),
                   const SizedBox(width: RhythmaDimens.gapMedium),
                   Text(
@@ -460,7 +485,8 @@ class HomeLogGridWidget extends StatelessWidget {
                       if (ctx.mounted) Navigator.pop(ctx);
                       onLogSaved();
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(l10n.homeQuickLogSaved(label, opt))),
+                        SnackBar(
+                            content: Text(l10n.homeQuickLogSaved(label, opt))),
                       );
                     },
                     child: Container(
@@ -468,7 +494,8 @@ class HomeLogGridWidget extends StatelessWidget {
                           horizontal: 14, vertical: 9),
                       decoration: BoxDecoration(
                         color: RhythmaColors.surfaceMuted,
-                        borderRadius: BorderRadius.circular(RhythmaDimens.radiusLarge),
+                        borderRadius:
+                            BorderRadius.circular(RhythmaDimens.radiusLarge),
                         border: Border.all(color: RhythmaColors.border),
                       ),
                       child: Text(
@@ -596,7 +623,8 @@ class LogButton extends StatelessWidget {
   final VoidCallback? onTap;
 
   const LogButton(
-      {super.key, required this.icon,
+      {super.key,
+      required this.icon,
       required this.label,
       required this.color,
       this.onTap});
@@ -644,8 +672,7 @@ class HomeInsightCardWidget extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (_) =>
-                  const ShellBackground(child: InsightsScreen())),
+              builder: (_) => const ShellBackground(child: InsightsScreen())),
         );
       },
       child: GlassCard(
@@ -688,8 +715,7 @@ class HomeInsightCardWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(width: RhythmaDimens.gapSmall),
-            Icon(Icons.chevron_right_rounded,
-                color: RhythmaColors.mutedFg),
+            Icon(Icons.chevron_right_rounded, color: RhythmaColors.mutedFg),
           ],
         ),
       ),
@@ -717,8 +743,7 @@ class HomeLearnSectionWidget extends StatelessWidget {
                 title: l10n.homeLearnPcos,
                 color: RhythmaColors.rose,
                 label: l10n.homeArticle,
-                onTap: () =>
-                    showComingSoonDialog(context, l10n.homeLearnPcos),
+                onTap: () => showComingSoonDialog(context, l10n.homeLearnPcos),
               ),
               const SizedBox(width: RhythmaDimens.gapMedium),
               LearnCard(
@@ -733,8 +758,7 @@ class HomeLearnSectionWidget extends StatelessWidget {
                 title: l10n.homeLearnIron,
                 color: RhythmaColors.coral,
                 label: l10n.homeArticle,
-                onTap: () =>
-                    showComingSoonDialog(context, l10n.homeLearnIron),
+                onTap: () => showComingSoonDialog(context, l10n.homeLearnIron),
               ),
             ],
           ),
@@ -751,7 +775,8 @@ class LearnCard extends StatelessWidget {
   final VoidCallback? onTap;
 
   const LearnCard(
-      {super.key, required this.title,
+      {super.key,
+      required this.title,
       required this.color,
       required this.label,
       this.onTap});

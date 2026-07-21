@@ -105,47 +105,45 @@ class GradientBox extends StatelessWidget {
     this.colors,
   });
 
-   @override
-Widget build(BuildContext context) {
-  final isDark = Theme.of(context).brightness == Brightness.dark;
-  final primaryColor = colors?.first ?? RhythmaColors.primary;
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final primaryColor = colors?.first ?? RhythmaColors.primary;
 
-  return Container(
-    padding: padding,
-    decoration: BoxDecoration(
-      gradient: isDark
-          ? null
-          : LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: colors ??
-                  [
-                    RhythmaColors.primary,
-                    RhythmaColors.primary.withValues(alpha: 0.6),
-                  ],
-            ),
-      color: isDark
-          ? primaryColor.withValues(alpha: 0.15)
-          : null,
-      border: isDark
-          ? Border.all(
-              color: primaryColor.withValues(alpha: 0.3),
-            )
-          : null,
-      borderRadius: BorderRadius.circular(borderRadius),
-      boxShadow: isDark
-          ? null
-          : [
-              BoxShadow(
-                color: primaryColor.withValues(alpha: 0.28),
-                blurRadius: 40,
-                offset: const Offset(0, 10),
+    return Container(
+      padding: padding,
+      decoration: BoxDecoration(
+        gradient: isDark
+            ? null
+            : LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: colors ??
+                    [
+                      RhythmaColors.primary,
+                      RhythmaColors.primary.withValues(alpha: 0.6),
+                    ],
               ),
-            ],
-    ),
-    child: child,
-  );
-}
+        color: isDark ? primaryColor.withValues(alpha: 0.15) : null,
+        border: isDark
+            ? Border.all(
+                color: primaryColor.withValues(alpha: 0.3),
+              )
+            : null,
+        borderRadius: BorderRadius.circular(borderRadius),
+        boxShadow: isDark
+            ? null
+            : [
+                BoxShadow(
+                  color: primaryColor.withValues(alpha: 0.28),
+                  blurRadius: 40,
+                  offset: const Offset(0, 10),
+                ),
+              ],
+      ),
+      child: child,
+    );
+  }
 }
 
 /// Tinted icon box (the colored icon containers on cards)

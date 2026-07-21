@@ -61,7 +61,8 @@ class LocalStorageService {
       await oldBox.close();
       await Hive.deleteBoxFromDisk(_Keys.cycleBox); // Delete unencrypted file
 
-      final newBox = await Hive.openBox<Map>(_Keys.cycleBox, encryptionCipher: cipher);
+      final newBox =
+          await Hive.openBox<Map>(_Keys.cycleBox, encryptionCipher: cipher);
       await newBox.putAll(oldData); // Restore data securely
     } else {
       await Hive.openBox<Map>(_Keys.cycleBox, encryptionCipher: cipher);
@@ -74,7 +75,8 @@ class LocalStorageService {
       await oldBox.close();
       await Hive.deleteBoxFromDisk(_Keys.userBox); // Delete unencrypted file
 
-      final newBox = await Hive.openBox<Map>(_Keys.userBox, encryptionCipher: cipher);
+      final newBox =
+          await Hive.openBox<Map>(_Keys.userBox, encryptionCipher: cipher);
       await newBox.putAll(oldData); // Restore data securely
     } else {
       await Hive.openBox<Map>(_Keys.userBox, encryptionCipher: cipher);
@@ -247,8 +249,8 @@ class LocalStorageService {
   /// Onboarding completion is scoped per user, so each account has its own state.
   static bool get onboardingCompleted {
     if (isTesting) return mockOnboardingCompleted;
-    return _settings.get(_scoped(_Keys.onboardingCompleted), defaultValue: false)
-        as bool;
+    return _settings.get(_scoped(_Keys.onboardingCompleted),
+        defaultValue: false) as bool;
   }
 
   static Future<void> setOnboardingCompleted(bool value) async {
@@ -288,7 +290,8 @@ class LocalStorageService {
 
   // ── Quick Log Field ────────────────────────────────────────────────────
 
-  static Future<void> saveQuickLogField(DateTime date, String field, dynamic value) async {
+  static Future<void> saveQuickLogField(
+      DateTime date, String field, dynamic value) async {
     if (isTesting) {
       final key = _dateKey(date);
       final index = mockCycleLogs.indexWhere((l) => l['start_date'] == key);
@@ -334,7 +337,8 @@ class LocalStorageService {
     return [];
   }
 
-  static Future<void> saveEmergencyContacts(List<Map<String, String>> contacts) async {
+  static Future<void> saveEmergencyContacts(
+      List<Map<String, String>> contacts) async {
     if (isTesting) {
       mockEmergencyContacts = contacts;
       return;

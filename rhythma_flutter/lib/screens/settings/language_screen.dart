@@ -69,10 +69,14 @@ class LanguageScreen extends StatelessWidget {
                             color: RhythmaColors.primary)
                         : null,
                     onTap: () {
-                      context.read<LocaleProvider>().setLocale(Locale(langCode));
+                      context
+                          .read<LocaleProvider>()
+                          .setLocale(Locale(langCode));
                       final profile = context.read<ProfileProvider>().profile;
                       if (profile.isNotEmpty) {
-                        context.read<ProfileProvider>().mergeProfileWithSync({'language': langCode});
+                        context
+                            .read<ProfileProvider>()
+                            .mergeProfileWithSync({'language': langCode});
                       }
                     },
                   ),

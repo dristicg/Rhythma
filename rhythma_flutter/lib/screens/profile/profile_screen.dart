@@ -28,7 +28,6 @@ class _ProfileScreenState extends State<ProfileScreen>
   int? _cycleDay;
   int? _mhsAverage;
 
-
   List<Map<String, String>> _emergencyContacts = [];
 
   late final AnimationController _controller;
