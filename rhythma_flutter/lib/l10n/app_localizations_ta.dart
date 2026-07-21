@@ -8,10 +8,6 @@ import 'app_localizations.dart';
 class AppLocalizationsTa extends AppLocalizations {
   AppLocalizationsTa([String locale = 'ta']) : super(locale);
 
-   @override
-   String insightsScoreValue(int i) {
-   return '$i';}
-
   @override
   String get appTitle => 'ரித்மா (Rhythma)';
 
@@ -677,4 +673,29 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get insightsNotEnoughTrendData =>
       'உங்கள் போக்கைக் காண குறைந்தது இரண்டு சுழற்சிகளைப் பதிவு செய்யவும்.';
+
+  @override
+  String get settingsSemanticsLanguage => 'Double tap to select this language';
+
+  @override
+  String get settingsSemanticsThemeColor =>
+      'Double tap to select this theme color';
+
+  @override
+  String get settingsSemanticsPrivacy => 'Double tap to open privacy policy';
+
+  @override
+  String get settingsSemanticsSupport => 'Double tap to email support';
+
+  @override
+  String get settingsSemanticsLogout => 'Double tap to log out';
+
+  @override
+  String get comingSoonTitle => 'Coming Soon';
+
+  @override
+  String get comingSoonDesc => 'This feature is currently under development.';
+
+  @override
+  String get okButton => 'OK';
 }

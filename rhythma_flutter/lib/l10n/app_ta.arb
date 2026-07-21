@@ -189,8 +189,22 @@
   "smsLoadError": "உங்கள் எஸ்எம்எஸ் அமைப்புகளை ஏற்ற முடியவில்லை. புதுப்பிக்கவும் அல்லது மீண்டும் முயற்சிக்கவும்.",
   "smsSummaryMessage": "🌸 Rhythma சுகாதார சுருக்கம்\nஇது Rhythma-விலிருந்து உங்கள் உடனடி சுருக்கம்.\nஉங்கள் சமீபத்திய சுழற்சி தகவலுக்கு ஆப்பைத் திறக்கவும்.\nசந்தா நீக்க STOP என பதிலளிக்கவும்.",
   "insightsLoadError": "உங்கள் நுண்ணறிவை ஏற்ற முடியவில்லை: {error}",
-  "@insightsLoadError": { "placeholders": { "error": { "type": "String" } } },
+  "@insightsLoadError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "insightsNotEnoughData": "உங்கள் முழு சுகாதார நுண்ணறிவைத் திறக்க Cycle டேப்பில் இன்னும் சில சுழற்சிகளைப் பதிவு செய்யவும்.",
   "insightsNoSymptomsYet": "இன்னும் அறிகுறிகள் எதுவும் பதிவு செய்யப்படவில்லை - Cycle டேப்பில் சிலவற்றைப் பதிவு செய்யவும்.",
-  "insightsNotEnoughTrendData": "உங்கள் போக்கைக் காண குறைந்தது இரண்டு சுழற்சிகளைப் பதிவு செய்யவும்."
+  "insightsNotEnoughTrendData": "உங்கள் போக்கைக் காண குறைந்தது இரண்டு சுழற்சிகளைப் பதிவு செய்யவும்.",
+  "settingsSemanticsLanguage": "Double tap to select this language",
+  "settingsSemanticsThemeColor": "Double tap to select this theme color",
+  "settingsSemanticsPrivacy": "Double tap to open privacy policy",
+  "settingsSemanticsSupport": "Double tap to email support",
+  "settingsSemanticsLogout": "Double tap to log out",
+  "comingSoonTitle": "Coming Soon",
+  "comingSoonDesc": "This feature is currently under development.",
+  "okButton": "OK"
 }

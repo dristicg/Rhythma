@@ -9,11 +9,6 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String insightsScoreValue(int i) {
-  return '$i';
-  }
-
-  @override
   String get appTitle => 'Rhythma';
 
   @override
@@ -666,4 +661,29 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get insightsNotEnoughTrendData =>
       'Log at least two cycles to see your trend here.';
+
+  @override
+  String get settingsSemanticsLanguage => 'Double tap to select this language';
+
+  @override
+  String get settingsSemanticsThemeColor =>
+      'Double tap to select this theme color';
+
+  @override
+  String get settingsSemanticsPrivacy => 'Double tap to open privacy policy';
+
+  @override
+  String get settingsSemanticsSupport => 'Double tap to email support';
+
+  @override
+  String get settingsSemanticsLogout => 'Double tap to log out';
+
+  @override
+  String get comingSoonTitle => 'Coming Soon';
+
+  @override
+  String get comingSoonDesc => 'This feature is currently under development.';
+
+  @override
+  String get okButton => 'OK';
 }

@@ -1351,6 +1351,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Log at least two cycles to see your trend here.'**
   String get insightsNotEnoughTrendData;
+
+  /// No description provided for @settingsSemanticsLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to select this language'**
+  String get settingsSemanticsLanguage;
+
+  /// No description provided for @settingsSemanticsThemeColor.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to select this theme color'**
+  String get settingsSemanticsThemeColor;
+
+  /// No description provided for @settingsSemanticsPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to open privacy policy'**
+  String get settingsSemanticsPrivacy;
+
+  /// No description provided for @settingsSemanticsSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to email support'**
+  String get settingsSemanticsSupport;
+
+  /// No description provided for @settingsSemanticsLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to log out'**
+  String get settingsSemanticsLogout;
+
+  /// No description provided for @comingSoonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming Soon'**
+  String get comingSoonTitle;
+
+  /// No description provided for @comingSoonDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'This feature is currently under development.'**
+  String get comingSoonDesc;
+
+  /// No description provided for @okButton.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get okButton;
 }
 
 class _AppLocalizationsDelegate

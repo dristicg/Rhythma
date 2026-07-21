@@ -1,7 +1,9 @@
 {
   "@@locale": "en",
   "appTitle": "Rhythma",
-  "@appTitle": { "description": "The title of the application" },
+  "@appTitle": {
+    "description": "The title of the application"
+  },
   "settingsTitle": "Settings",
   "appPreferences": "App Preferences",
   "languagePreferences": "Language Preferences",
@@ -46,7 +48,13 @@
   "homeRetry": "Retry",
   "homeComingSoon": "Coming Soon",
   "homeUnderDevelopment": "{topic} is currently under development.",
-  "@homeUnderDevelopment": { "placeholders": { "topic": { "type": "String" } } },
+  "@homeUnderDevelopment": {
+    "placeholders": {
+      "topic": {
+        "type": "String"
+      }
+    }
+  },
   "homePrivacySecurity": "Privacy & Security",
   "homeOk": "OK",
   "cycleTrackerTitle": "Cycle Tracker",
@@ -207,8 +215,22 @@
   "smsLoadError": "Couldn't load your SMS settings. Pull to refresh or try again.",
   "smsSummaryMessage": "🌸 Rhythma Health Summary\nThis is your on-demand summary from Rhythma.\nOpen the app for your latest cycle insights.\nReply STOP to unsubscribe.",
   "insightsLoadError": "Couldn't load your insights: {error}",
-  "@insightsLoadError": { "placeholders": { "error": { "type": "String" } } },
+  "@insightsLoadError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "insightsNotEnoughData": "Log a few more cycles on the Cycle tab to unlock your full health insights.",
   "insightsNoSymptomsYet": "No symptoms logged yet — log some on the Cycle tab to see patterns here.",
-  "insightsNotEnoughTrendData": "Log at least two cycles to see your trend here."
+  "insightsNotEnoughTrendData": "Log at least two cycles to see your trend here.",
+  "settingsSemanticsLanguage": "Double tap to select this language",
+  "settingsSemanticsThemeColor": "Double tap to select this theme color",
+  "settingsSemanticsPrivacy": "Double tap to open privacy policy",
+  "settingsSemanticsSupport": "Double tap to email support",
+  "settingsSemanticsLogout": "Double tap to log out",
+  "comingSoonTitle": "Coming Soon",
+  "comingSoonDesc": "This feature is currently under development.",
+  "okButton": "OK"
 }

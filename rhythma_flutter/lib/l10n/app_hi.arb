@@ -189,8 +189,22 @@
   "smsLoadError": "आपकी एसएमएस सेटिंग्स लोड नहीं हो सकीं। रीफ्रेश करें या पुनः प्रयास करें।",
   "smsSummaryMessage": "🌸 रिद्मा स्वास्थ्य सारांश\nयह रिद्मा से आपका ऑन-डिमांड सारांश है।\nअपनी नवीनतम चक्र जानकारी के लिए ऐप खोलें।\nसदस्यता समाप्त करने के लिए STOP उत्तर दें।",
   "insightsLoadError": "आपकी जानकारी लोड नहीं हो सकी: {error}",
-  "@insightsLoadError": { "placeholders": { "error": { "type": "String" } } },
+  "@insightsLoadError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "insightsNotEnoughData": "अपने पूर्ण स्वास्थ्य अंतर्दृष्टि को अनलॉक करने के लिए Cycle टैब पर कुछ और चक्र लॉग करें।",
   "insightsNoSymptomsYet": "अभी तक कोई लक्षण लॉग नहीं किया गया है - यहाँ पैटर्न देखने के लिए Cycle टैब पर कुछ लॉग करें।",
-  "insightsNotEnoughTrendData": "अपना ट्रेंड देखने के लिए कम से कम दो चक्र लॉग करें।"
+  "insightsNotEnoughTrendData": "अपना ट्रेंड देखने के लिए कम से कम दो चक्र लॉग करें।",
+  "settingsSemanticsLanguage": "Double tap to select this language",
+  "settingsSemanticsThemeColor": "Double tap to select this theme color",
+  "settingsSemanticsPrivacy": "Double tap to open privacy policy",
+  "settingsSemanticsSupport": "Double tap to email support",
+  "settingsSemanticsLogout": "Double tap to log out",
+  "comingSoonTitle": "Coming Soon",
+  "comingSoonDesc": "This feature is currently under development.",
+  "okButton": "OK"
 }

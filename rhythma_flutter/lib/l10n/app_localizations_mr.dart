@@ -8,14 +8,9 @@ import 'app_localizations.dart';
 class AppLocalizationsMr extends AppLocalizations {
   AppLocalizationsMr([String locale = 'mr']) : super(locale);
 
-   @override
-   String insightsScoreValue(int i) {
-   return '$i';
-  }
- 
   @override
   String get appTitle => 'रिद्मा';
-  
+
   @override
   String get settingsTitle => 'सेटिंग्ज';
 
@@ -667,4 +662,29 @@ class AppLocalizationsMr extends AppLocalizations {
   @override
   String get insightsNotEnoughTrendData =>
       'तुमचा ट्रेंड पाहण्यासाठी किमान दोन चक्र लॉग करा.';
+
+  @override
+  String get settingsSemanticsLanguage => 'Double tap to select this language';
+
+  @override
+  String get settingsSemanticsThemeColor =>
+      'Double tap to select this theme color';
+
+  @override
+  String get settingsSemanticsPrivacy => 'Double tap to open privacy policy';
+
+  @override
+  String get settingsSemanticsSupport => 'Double tap to email support';
+
+  @override
+  String get settingsSemanticsLogout => 'Double tap to log out';
+
+  @override
+  String get comingSoonTitle => 'Coming Soon';
+
+  @override
+  String get comingSoonDesc => 'This feature is currently under development.';
+
+  @override
+  String get okButton => 'OK';
 }

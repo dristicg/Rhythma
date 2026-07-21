@@ -9,11 +9,6 @@ class AppLocalizationsTe extends AppLocalizations {
   AppLocalizationsTe([String locale = 'te']) : super(locale);
 
   @override
-  String insightsScoreValue(int i) {
-  return '$i';
-  }
-  
-  @override
   String get appTitle => 'రిథ్మా (Rhythma)';
 
   @override
@@ -673,4 +668,29 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get insightsNotEnoughTrendData =>
       'మీ ట్రెండ్ చూడటానికి కనీసం రెండు చక్రాలను లాగ్ చేయండి.';
+
+  @override
+  String get settingsSemanticsLanguage => 'Double tap to select this language';
+
+  @override
+  String get settingsSemanticsThemeColor =>
+      'Double tap to select this theme color';
+
+  @override
+  String get settingsSemanticsPrivacy => 'Double tap to open privacy policy';
+
+  @override
+  String get settingsSemanticsSupport => 'Double tap to email support';
+
+  @override
+  String get settingsSemanticsLogout => 'Double tap to log out';
+
+  @override
+  String get comingSoonTitle => 'Coming Soon';
+
+  @override
+  String get comingSoonDesc => 'This feature is currently under development.';
+
+  @override
+  String get okButton => 'OK';
 }
