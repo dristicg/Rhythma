@@ -232,5 +232,32 @@
   "settingsSemanticsLogout": "Double tap to log out",
   "comingSoonTitle": "Coming Soon",
   "comingSoonDesc": "This feature is currently under development.",
-  "okButton": "OK"
+  "okButton": "OK",
+  "homeErrorNetwork": "Network connection error",
+  "homeErrorAuth": "Authentication error. Please log in again.",
+  "homeErrorServer": "Server error. Try again later.",
+  "homeErrorGeneric": "Something went wrong.",
+  "cycleToday": "Today",
+  "homeMhs": "Menstrual Health Score",
+  "homeCvi": "Cycle Variability Index",
+  "homeSleep": "Sleep",
+  "homeQuickLogTitle": "Log {label}",
+  "@homeQuickLogTitle": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "homeQuickLogSaved": "{label} saved as {value}",
+  "@homeQuickLogSaved": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "value": {
+        "type": "String"
+      }
+    }
+  }
 }
