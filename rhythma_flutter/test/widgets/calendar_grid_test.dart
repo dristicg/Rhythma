@@ -73,16 +73,15 @@ void main() {
   testWidgets(
       'Calendar markers reflect real Hive data and do not fallback to hardcoded mock state (#131)',
       (WidgetTester tester) async {
-    // Seed fake Hive storage with specific known dates
     final now = DateTime.now();
     final seededDate = DateTime(now.year, now.month, 15);
-    
+
     LocalStorageService.mockCycleLogs = [
       CycleLog(
-        date: seededDate,
-        flow: 'medium',
+        startDate: seededDate,
+        flowIntensity: 'medium',
         symptoms: ['cramps'],
-      )
+      ).toJson(),
     ];
 
     final cycleProvider = CycleProvider();
@@ -97,10 +96,8 @@ void main() {
     ));
     await tester.pumpAndSettle();
 
-    // Verify the seeded date is recognized
     expect(cycleProvider.hasLogsForDate(seededDate), isTrue);
 
-    // Regression Check: Verify unlogged dates are NOT treated as logged days
     final unloggedDate = DateTime(now.year, now.month, 28);
     if (unloggedDate.day != seededDate.day) {
       expect(cycleProvider.hasLogsForDate(unloggedDate), isFalse);
